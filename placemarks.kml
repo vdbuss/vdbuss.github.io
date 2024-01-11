@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0">
+
+<Document>
+    <name>BOOKING.COM - 
+
+Search for hotels in Antwerpen
+
+
+
+
+
+
+    </name>
+    <description>
+<![CDATA[
+More information about these hotels at <a href="http://www.booking.com/index.html?aid=303948;label=antwerp-2">www.booking.com</a>
+]]>
+    </description>
+    
+    <LookAt>
+        <longitude>4.41666984558105</longitude>
+        <latitude>51.2167015075684</latitude>
+        <heading>0</heading>
+        <range>6000</range>
+        <tilt>30</tilt>
+    </LookAt>
+    <Placemark>
+        <name>Antwerpen</name>
+
+
+
+<styleUrl>flatfile://styleMaps#8802</styleUrl>
+
+
+
+
+
+        <Point>
+            <coordinates>4.41666984558105,51.2167015075684</coordinates>
+        </Point>
+    </Placemark>
+    
+    <NetworkLink>
+        <visibility>1</visibility>
+        <open>1</open>
+        <Url>
+            <href>http://www.booking.com/placemarks.kml?aid=303948;label=antwerp-2</href>
+            <viewRefreshMode>onStop</viewRefreshMode>
+            <viewRefreshTime>1</viewRefreshTime>
+        </Url>
+    </NetworkLink>
+</Document>
+
+</kml>
+

@@ -1,0 +1,78 @@
+
+import sqlj.runtime.*;                                              
+import java.sql.*;
+
+#sql context SqljTestCtx;                                              
+#sql iterator SqljTestNameIter (int ID, String NAME);                      
+
+public class SqljTest {
+  public static void main(String args[]) 
+    throws SQLException
+  {
+    SqljTestCtx ctx = null;
+    
+    String url = "jdbc:db2:gdbt";	
+                                            
+    try {                                                           
+      Class.forName("com.ibm.db2.jcc.DB2Driver");
+    } 
+	catch (Exception e)
+    {
+       throw new SQLException("Error: Could not load the driver");
+    }
+    try
+    {
+       System.out.println("About to connect using url: " + url);
+       Connection con0 = DriverManager.getConnection(url);
+                                            // Create a JDBC Connection
+       con0.setAutoCommit(false);           // set autocommit OFF
+       ctx = new SqljTestCtx(con0);                                   
+
+       try
+       {
+         SqljTestNameIter iter;
+         int count=0;
+
+         #sql [ctx] iter = 
+           {SELECT * FROM person};                         
+                                            // Create result table of the SELECT
+         while (iter.next()) {                         
+            System.out.println("" + iter.ID() + " " + iter.NAME()); 
+                                            // Retrieve rows from result table
+            count++;
+         }
+         System.out.println("Retrieved " + count + " rows of data");
+         iter.close();                      // Close the iterator
+       }
+       catch( SQLException e )                                        
+       {
+          System.out.println ("**** SELECT SQLException...");
+          while(e!=null) {
+            System.out.println ("Error msg: " + e.getMessage());
+            System.out.println ("SQLSTATE: " + e.getSQLState());
+            System.out.println ("Error code: " + e.getErrorCode());
+            e = e.getNextException(); // Check for chained exceptions
+          }
+       }
+       catch( Exception e )
+       {
+          System.out.println("**** NON-SQL exception   = " + e);
+          e.printStackTrace();
+       }                                        
+  }
+  catch(SQLException e)
+  {
+     System.out.println ("**** SQLException ...");
+     System.out.println ("Error msg: " + e.getMessage() + ". SQLSTATE=" + 
+       e.getSQLState() + " Error code=" + e.getErrorCode());
+     e.printStackTrace();
+  }
+  catch(Exception e)
+  {
+    System.out.println ("**** NON-SQL exception = " + e);
+    e.printStackTrace();
+  }
+
+}
+
+}

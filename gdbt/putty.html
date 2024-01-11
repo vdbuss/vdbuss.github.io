@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>Putty client</h1></div>
+
+<table align="center" width="60%">
+
+<tr><td>
+<h3>Inleiding</h3>
+
+Putty is een netwerk client om onder Windows via het SSH protocol in te loggen op een andere computer. Je kan <q>putty.exe</q> <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" >hier</a> downloaden.
+
+<h3>Inloggen op Spooky</h3>
+
+<p>Bij het opstarten krijg je het volgende scherm te zien:</p>
+<a href="images/putty.png" ><img src="images/putty.png" alt="" width="50%" /></a>
+
+<p><b>(1)</b>: hierin moet je <q>spooky.uhasselt.be</q> typen. Het poort-nummer <q>22</q> dat reeds standaard is ingevuld laat je onveranderd. Als je nu op <q>Open</q> klikt zal eerst jouw account-naam gevraagd worden en vervolgens jouw paswoord. Je kan vermijden dat je jouw account-naam telkens moet ingeven door <q>spooky.uhasselt.be</q> te vervangen door <q><u>accountnaam</u>@spooky.uhasselt.be</q>. Hier moet je dan jouw eigen account-naam invullen. <br>Je kan ook vermijden dat je jouw paswoord telkens moet ingeven door te werken met een <q>public-private key pair</q>. Dat is eerder geavanceerd en daar gaan we niet dieper op in.</p>
+
+<p><b>(2)</b>: hier kan je instellingen die je gemaakt hebt opslaan (zoals het ingeven van <q>spooky.uhasselt.be</q>) zodat je deze niet telkens opnieuw hoeft in te geven bij elke Putty sessie. Je doet dit door de instellingen een naam te geven.</p>
+
+<p><b>(3)</b>: onder <q>Connection</q> kan je best bij de optie <q>Seconds between keepalives</q> een klein natuurlijk getal opgeven. Als je bijvoorbeeld <q>5</q> ingeeft, dan zal Putty voor jou om de vijf seconden een kleine boodschap versturen naar de Spooky server om deze te laten weten dat je nog steeds bezig bent. De reden daarvoor is als volgt. Wanneer je een poosje niets hebt gedaan via je login-shell zal Spooky zonder deze "keepalives" denken dat de verbinding is verloren en je dan automatisch uitloggen.</p>
+   
+
+</td></tr>
+</table>
+
+</body>
+</html>

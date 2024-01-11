@@ -1,0 +1,430 @@
+<title>Externe UDFs en Table UDFs</title>
+<h1>Externe UDFs en Table UDFs</h1>
+<h2>A. Externe UDFs</h2>
+SQL/PSM is een krachtige programmeertaal voor het schrijven van user-defined
+functions (UDFs) en stored
+procedures.  Toch zal soms de nood ontstaan een UDF of stored procedure te
+schrijven in een externe programmeertaal, zoals C, C++, of Java.
+<h3>A.1. Hello, world!</h3>
+Dit is een eenvoudig voorbeeldje: (file 
+<a href="hellib.c"><tt>hellib.c</tt></a>)
+<pre>
+#include &lt;string.h&gt;
+#include "sqludf.h"
+
+// volgende UDF neemt geen input en geeft "Hello, world!" terug
+
+SQL_API_RC SQL_API_FN hello ( SQLUDF_VARCHAR* out,
+                              SQLUDF_NULLIND* outnul,
+                              SQLUDF_TRAIL_ARGS )
+{
+  strcpy(out,"Hello, world!");
+}
+</pre>
+Enkele opmerkingen hierbij:
+<ul>
+<li>
+Dit is natuurlijk een absurd voorbeeld.  Je gaat normaal
+geen C-programma schrijven om
+een constante string te maken, dat kan je rechtstreeks in SQL.
+<li>
+De include file <tt>sqludf.h</tt> wordt automatisch gevonden door het
+<tt>bldrtn</tt> script (zie verder) dat je zal gebruiken voor het compilen.
+Deze file bevat de nodige macro's en
+declaraties die zorgen voor
+de interface tussen het DBMS en de functie.
+<li>
+De <tt>SQL_API_RC</tt> en
+<tt>SQL_API_FN</tt> in de functie-declaratie zijn zulke macro's. 
+Je hoeft niet te weten wat ze betekenen, je zet ze gewoon letterlijk voor de
+functienaam.
+<li>
+De include file <tt>sqludf.h</tt> bevat ook type-definities
+die je kan gebruiken voor de types van
+de argumenten van je functie.  De belangrijkste zijn <tt>SQLUDF_INTEGER</tt>,
+<tt>SQLUDF_DOUBLE</tt>, en <tt>SQLUDF_VARCHAR</tt>.
+Een volledig overzicht van deze types vind je
+in de DB2-manual
+<em>Application Development Guide: Programming Server Applications</em>,
+hoofdstuk&nbsp;4,
+paragraaf over "C/C++ routines", sectie "Supported SQL Data Types
+in C/C++".
+<li>
+Het resultaat van de functie wordt niet teruggegeven met <tt>return</tt>, maar
+wordt geplaatst in de locatie verwezen door een speciaal output-argument.
+<li>
+Het extra argument <tt>outnul</tt> (van type <tt>SQLUDF_NULLIND</tt>, eveneens
+gedefinieerd in <tt>sqludf.h</tt>) kan je gebruiken om de <tt>NULL</tt>-waarde
+terug te geven.  Je plaatst dan &minus;1 in die locatie.
+<li>
+De extra argumenten <tt>SQLUDF_TRAIL_ARGS</tt> zijn eveneens gedefinieerd in
+<tt>sqludf.h</tt>.  Hiertoe behoort <tt>SQLUDF_STATE</tt> die we verder zullen
+zien.
+<li>
+Een goedbewaard geheim is dat alle functies uit de standard C library
+gedocumenteerd zijn in het standaard manual page systeem van UNIX.  Doe maar
+eens <tt>man strcpy</tt> in de shell.
+</ul>
+<h3>A.2. Compileren en installeren</h3>
+Dat gaat met het shell script <tt>bldrtn</tt> dat je vindt in de directory
+<tt>sqllib/samples/c</tt> onder de home directory van de DB2 instance.
+Je gaat als volgt te werk:
+<ol>
+<li>
+Maak een kopie van <tt>bldrtn</tt>
+in dezelfde directory als onze C file <tt>hellib.c</tt>.
+<li>
+Zet de variabele <tt>DB2PATH</tt> in dit script op het juiste pad van de
+<tt>sqllib</tt> directory.
+<li>
+Het shell commando
+<pre>
+./bldrtn hellib
+</pre>
+compileert de C file, maakt een library genaamd <tt>hellib</tt> met daarin
+de uitvoerbare functie <tt>hello</tt>, en installeert deze library
+automatisch in de directory <tt>sqllib/function</tt>.
+</ol>
+<h3>A.3. Registreren van de functie in het DBMS</h3>
+Dit doen we met het volgende SQL-statement:
+(file <a href="create_hello.db2"><tt>create_hello.db2</tt></a>)
+<pre>
+create function hello () returns varchar(80)
+  external name 'hellib!hello'
+  language C
+  parameter style SQL
+</pre>
+<h3>A.4. Gebruiken van de functie</h3>
+We zijn nu klaar om de functie te gebruiken, bijvoorbeeld in een statement
+<pre>
+select hello() from R
+</pre>
+<h3>A.5. Verwijderen van de functie</h3>
+Een UDF verwijderen kan eenvoudig met het SQL-statement
+<pre>
+drop function hello
+</pre>
+Je kan dan best ook de library file <tt>hellib</tt> verwijderen uit de
+<tt>sqllib/function</tt> directory.
+<h3>A.6. Een tweede voorbeeldje</h3>
+Een voorbeeldje van een functie met twee input-argumenten: (file
+<a href="tellib.c"><tt>tellib.c</tt></a>)
+<pre>
+#include "sqludf.h"
+
+// volgende UDF neemt twee integers als input en telt ze op
+
+SQL_API_RC SQL_API_FN telop ( SQLUDF_INTEGER* in1,
+                              SQLUDF_INTEGER* in2,
+                              SQLUDF_INTEGER* out,
+                              SQLUDF_NULLIND* in1nul,
+                              SQLUDF_NULLIND* in2nul,
+                              SQLUDF_NULLIND* outnul,
+                              SQLUDF_TRAIL_ARGS )
+{
+  *out = *in1 + *in2;
+}
+</pre>
+<ul>
+  <li>
+Uiteraard is dit opnieuw
+een absurd voorbeeld.  Je gaat geen C-programma schrijven om
+twee integers op te tellen, dit is al mogelijk in SQL zelf.
+<li>
+Eerst volgen de input-argumenten, dan het output-argument.
+Daarna volgt
+voor elk input-argument een extra null-indicator: als <tt>*in1nul</tt> gelijk
+is aan &minus;1 betekent dit dat het eerste argument de
+<tt>NULL</tt>-waarde heeft.
+Daarna volgt ook voor het output-argument een null-indicator, zoals we reeds
+zagen bij Hello-world.
+<li>
+Compilatie en installatie verloopt altijd volgens de procedure hierboven
+beschreven (<tt>bldrtn</tt> script).
+<li>
+De registratie van deze functie moet nu de twee input-argumenten declareren:
+(file <a href="create_telop.db2"><tt>create_telop.db2</tt></a>)
+<pre>
+create function telop (int,int) returns int
+  external name 'tellib!telop'
+  language C
+  parameter style SQL
+</pre>
+<li>
+We kunnen de functie dan gebruiken, bijvoorbeeld als volgt over een
+tabel <tt>R(A int, B int)</tt>:
+<pre>
+select telop(A,B) from R
+</pre>
+</ul>
+<h3>A.7. Algemeen sjabloon</h3>
+Het algemeen sjabloon voor een externe "scalaire" UDF met twee inputs
+is als volgt:
+(file <a href="scalarfunskelet.c"><tt>scalarfunskelet.c</tt></a>)
+<pre>
+// sjabloon voor een external UDF geschreven in C
+// (geval voor twee inputs: minder of meer inputs is analoog)
+
+#include &lt;string.h&gt; // voor strcpy
+#include "sqludf.h"
+
+SQL_API_RC SQL_API_FN funnaam ( SQLUDF_type* in1,
+                                SQLUDF_type* in2,
+                                SQLUDF_type* out,
+                                SQLUDF_NULLIND* in1nul,
+                                SQLUDF_NULLIND* in2nul,
+                                SQLUDF_NULLIND* outnul,
+                                SQLUDF_TRAIL_ARGS )
+{
+  // bereken de output en plaats hem in de locatie
+  // verwezen door de out-parameter
+  // (gebruik strcpy voor strings!)
+  if (er is iets mis)
+    strcpy(SQLUDF_STATE,"38XXX"); // vertelt DB2 dat iets mis is
+}
+</pre>
+We maken hier kennis met het extra argument
+<tt>SQLUDF_STATE</tt>.  Dit argument behoort tot de <tt>SQLUDF_TRAIL_ARGS</tt>
+en dient om status-informatie door te geven aan het DBMS. Zo kan
+je een functie-oproep doen mislukken op een manier 
+die toelaat dat de uitvoering van het
+SQL-statement waarin de oproep gebeurt op een gracieuze
+manier kan be-eindigd worden.
+<h3>A.8. Externe procedures</h3>
+Je kan niet enkel UDFs, maar ook stored procedures extern schrijven.
+Dit gebeurt op volledig analoge wijze.
+<h3>A.9. Meer informatie</h3>
+Vind je in de DB2-manual
+<em>Application Development Guide: Programming Server Applications</em>.
+<h3>A.10. Opdracht</h3>
+DB2 SQL bevat reeds een functie <tt>length</tt> die de lengte van een string
+teruggeeft.  Schrijf zelf een UDF 
+<tt>mylength</tt> die hetzelfde doet.
+De vereiste signatuur van de functie is
+<pre>
+mylength (varchar(20000)) returns int
+</pre> 
+Je maakt twee files:
+<ul>
+<li>
+<tt>lenlib.c</tt> met de C implementatie
+<li>
+<tt>create_mylength.db2</tt> met het <tt>CREATE FUNCTION</tt>
+statement.
+</ul>
+Je kan de standard C library functie <tt>strlen</tt> gebruiken in je
+implementatie.
+<h2>B. Table-valued UDFs</h2>
+Tot nu toe heb je enkel zogenaamde "scalaire" UDFs gezien: deze geven slechts
+1 waarde terug.  Je kan echter ook "table" UDFs schrijven: deze geven een hele
+tabel terug, die je in de FROM-clause van een SQL-query kan oproepen.
+<h3>B.1. Table UDFs in SQL/PSM</h3>
+Table UDFs in SQL/PSM declareer je met <tt>RETURNS TABLE (...)</tt> in het
+<tt>CREATE FUNCTION</tt> statement.  Volgend voorbeeld neemt twee integers
+<tt>a</tt> en <tt>b</tt> als input en geeft een tabel terug bestaande uit
+<tt>empno</tt> en <tt>workdept</tt> van alle employees waarvan het salaris
+tussen <tt>a</tt> en <tt>b</tt> ligt:
+<pre>
+create function saltussen (a int, b int)
+  returns table (e varchar(10), d varchar(10))
+  return select empno, workdept
+         from Employee
+	 where salary between a and b
+</pre>
+<h3>B.2. Table UDFs oproepen in SQL</h3>
+Een oproep naar een table function mag eender waar komen waar ook een gewone
+tabelnaam mag komen.  Je moet wel <tt>TABLE(...)</tt> rond de oproep plaatsen,
+en je moet ook altijd een row variable invoeren.
+Een eenvoudig voorbeeld:
+<pre>
+select t.e, t.d
+from table(saltussen(10000,20000)) t
+</pre>
+Volgend voorbeeld
+roept de functie op voor elke <tt>a</tt> en <tt>b</tt> uit
+een andere tabel <tt>R</tt>:
+<pre>
+select  t.e, t.d
+from R, table(saltussen(R.A,R.B)) t
+</pre>
+<h2>C. Externe table UDFs</h2>
+Functie <tt>saltussen</tt> van daarnet is een voorbeeld van
+een typische toepassing van table UDFs: het
+encapsuleren van een query.  Een andere typische toepassing van
+table UDFs is het aanroepen
+van een verzameling records die van buiten het
+DBMS komt.  Hiervoor moeten we dan wel onze toevlucht nemen tot een externe
+programmeertaal.  Het schrijven van externe table UDFs is iets ingewikkelder
+dan externe scalaire UDFs.  We geven hier een inleiding
+in C.
+<h3>C.1. Verwerkingsmodel</h3>
+Een externe table UDF geeft niet in 1 klap een volledige tabel terug, maar
+geeft telkens slechts 1 tupel terug.
+Het DBMS zal de UDF dus herhaaldelijk aanroepen,
+telkens voor het volgende tupel van de tabel.
+Maar dan moet de functie wel haar toestand kunnen bewaren tussen opeenvolgende
+oproepen in.  Hiervoor reserveert het DBMS een "scratchpad": een array van
+bytes (default 100).  De functie kan hierin de nodige gegevens bewaren die
+haar toelaten te weten waar ze de laatste oproep gebleven was.
+<p>
+Het DBMS roept de UDF op met
+verschillende <em>call types</em>:
+<ol>
+  <li>
+  <em>Open:</em> Vooraleer het DBMS tupels begint te vragen zal het een "open"
+  oproep doen.  Dit laat de functie toe de input te analyseren en de
+  scratchpad te initialiseren.
+  <li>
+  <em>Fetch:</em> Het DBMS zal nu herhaaldelijk "fetch" oproepen doen waarbij
+  de functie telkens een tupel teruggeeft.  Het einde wordt aangegeven door de
+  SQL-status "02000" te zetten.
+  <li>
+  <em>Close:</em> Nadat alle tupels gefetcht zijn zal het DBMS nog een laatste
+  maal de functie oproepen.  Dit laat de functie toe om "op te kuisen":
+  dynamisch gealloceerd geheugen kan vrijgegeven worden, files kunnen gesloten
+  worden, enz.
+</ol>
+<h3>C.2. Algemeen sjabloon</h3>
+Het algemeen sjabloon voor een externe table UDF met twee inputs en output
+tupels van twee componenten is als volgt:
+(file <a href="tablefunskelet.c"><tt>tablefunskelet.c</tt></a>)
+<pre>
+// sjabloon voor een external table function geschreven in C
+// (geval voor twee inputs, en outputs van twee componenten;
+// meer of minder inputs of componenten is analoog)
+
+#include &lt;string.h&gt; // voor strcpy
+#include "sqludf.h"
+
+typedef
+  struct
+  {
+    // opsomming van de objecten die we in de scratchpad willen bewaren
+  }
+  my_pad_type;
+
+// opgelet: indien my_pad_type meer dan 100 bytes vergt,
+// waarde van SQLUDF_SCRATCHPAD_LEN verhogen in sqludf.h
+// en scratchpad-lengte declareren in CREATE FUNCTION
+
+SQL_API_RC SQL_API_FN funnaam ( SQLUDF_type* in1,
+                                SQLUDF_type* in2,
+                                SQLUDF_type* out1,
+                                SQLUDF_type* out2,
+                                SQLUDF_NULLIND* in1nul,
+                                SQLUDF_NULLIND* in2nul,
+                                SQLUDF_NULLIND* out1nul,
+                                SQLUDF_NULLIND* out2nul,
+                                SQLUDF_TRAIL_ARGS_ALL )
+{
+  // de scratchpad is een data-array van bytes.
+  // we gebruiken hem echter als een record van type my_pad_type.
+  // dit is eigenlijk niet safe, maar het werkt normaal wel.
+  my_pad_type* pad_ptr = (my_pad_type*) SQLUDF_SCRAT-&gt;data;
+
+  switch (SQLUDF_CALLT) {
+  case SQLUDF_TF_OPEN:
+    // analyseer de in-parameters
+    // initialiseer de scratchpad
+    if (er is iets mis)
+      strcpy(SQLUDF_STATE,"38XXX"); // vertelt DB2 dat iets mis is
+    break;
+  case SQLUDF_TF_FETCH:
+    // bereken componenten van het volgende output-tupel, en plaats
+    // ze in de locaties verwezen door de out-parameters
+    // (gebruik strcpy voor strings!)
+    if (geen tupels meer)
+      strcpy(SQLUDF_STATE,"02000"); // vertelt DB2 dat het gedaan is
+    break;
+  case SQLUDF_TF_CLOSE:
+    // kuis op
+    break;
+  }
+}
+</pre>
+Indien je een grotere scratchpad nodig hebt dan 100 bytes maak je een kopie
+van de include file <tt>sqludf.h</tt> en je past daarin de waarde aan van
+<tt>SQLUDF_SCRATCHPAD_LEN</tt>.  Je vindt de include file in de directory
+<tt>sqllib/include</tt> onder de home directory van de DB2 instance.
+<h3>C.3. Voorbeeld: <tt>leesfile</tt></h3>
+Dit is een uitgewerkt voorbeeld: 
+(file <a href="lflib.c"><tt>lflib.c</tt></a>)
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include "sqludf.h"
+
+typedef
+  struct
+  {
+    FILE* file_ptr;
+  }
+  my_pad_type;
+
+// deze table UDF neemt als input de naam van een file (volledig pad).
+// deze file wordt ondersteld een textfile te zijn van rijen van
+// telkens twee integers.
+// de outputtabel bestaat dan uit deze rijen.
+
+SQL_API_RC SQL_API_FN leesfile ( SQLUDF_VARCHAR* in,
+                                 SQLUDF_INTEGER* out1,
+                                 SQLUDF_INTEGER* out2,
+                                 SQLUDF_NULLIND* innul,
+                                 SQLUDF_NULLIND* out1nul,
+                                 SQLUDF_NULLIND* out2nul,
+                                 SQLUDF_TRAIL_ARGS_ALL )
+{
+  FILE *f;
+  int i;
+
+  my_pad_type* pad_ptr = (my_pad_type*) SQLUDF_SCRAT-&gt;data;
+
+  switch (SQLUDF_CALLT) {
+  case SQLUDF_TF_OPEN:
+    f = fopen(in,"r");
+    if (f) // fopen is gelukt, bewaar file pointer in scratchpad
+      pad_ptr-&gt;file_ptr = f;
+    else strcpy(SQLUDF_STATE,"38XXX");
+    break;
+  case SQLUDF_TF_FETCH:
+    f = pad_ptr-&gt;file_ptr;
+    i = fscanf(f,"%d %d",out1,out2);
+    if (i != 2)
+      // niet gelukt 2 integers te lezen
+      strcpy(SQLUDF_STATE,"02000");
+    break;
+  case SQLUDF_TF_CLOSE:
+    fclose(pad_ptr-&gt;file_ptr);
+    break;
+  }
+}
+</pre>
+<h3>C.4. Compileren en installeren</h3>
+Compiler en installeren van externe table UDFs gebeurt volledig analoog aan
+het compileren en installeren van externe scalaire UDFs.
+<h3>C.5. Registreren</h3>
+Om onze functie <tt>leesfile</tt> te registreren in DB2 gebruiken we volgend
+SQL-statement: (file <a
+  href="create_leesfile.db2"><tt>create_leesfile.db2</tt></a>)
+<pre>
+create function leesfile (varchar(250))
+  returns table (a int, b int)
+  external name 'lflib2!leesfile'
+  language C
+  parameter style SQL
+  scratchpad
+  disallow parallel
+</pre>
+Indien je een scratchpad gebruikt die groter is dan 100 bytes moet je de
+grootte declareren, bijvoorbeeld:
+<pre>
+  scratchpad 1024
+</pre>
+<h3>C.6. Opdracht</h3>
+Beschouw de table UDF genaamd <tt>van1tot</tt>,
+die een integer <em>n</em> als input neemt;
+de output-tabel heeft dan 1 kolom en is gelijk aan {1,2,...,<em>n</em>}.
+Schrijf deze UDF
+in C.  Maak twee files: <tt>vanlib.c</tt> met de C-implementatie, en
+<tt>create_van1tot.db2</tt> met het <tt>CREATE FUNCTION</tt> statement.
+</ol>

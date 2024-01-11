@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>Praktisch</h1></div>
+
+<table width="60%" align="center">
+<tr>
+<td>
+
+<p>
+De oefeningen van het vak kunnen gemaakt worden op de Spooky server. We
+werken met de DB2 database instance <code>db2istud</code> en daarin meer concreet de 
+database <code>gdbt</code>. Een DB2 database instance is eigenlijk een verzameling databases,
+maar dat is verder niet belangrijk.
+</p>
+
+<p>Nu een korte uitleg omtrent de communicatie met de Spooky server.
+In dit vak zijn <code>ssh</code> toegang en <code>sftp</code> toegang nuttig.
+Via <code>ssh</code> kan je inloggen op Spooky en krijg je een prompt om commando's uit te voeren 
+zoals code compileren en uitvoeren.
+Via <code>sftp</code> kan
+je files uploaden of downloaden. 
+Voor Windows is <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">Putty</a> 
+een goede ssh client en 
+<a href="http://winscp.net/eng/docs/lang:nl">WinSCP</a> een goede sftp client.
+Onder unix systemen zijn er meestal standaard voorzieningen voor de bovengenoemde functionaliteiten, zoals het
+<code>ssh</code> commando en ook het <code>scp</code> commando (file-transfer). Voor het gebruik van deze clients
+en unix commando's verwijzen we naar de documentatie van die tools.
+</p>
+
+<p>
+Om te kunnen werken met de <code>db2istud</code> instance moet je een zogenaamd profile uitvoeren
+dat allerlei variabelen in de login-shell instelt. Vanaf dan kan je de db2 command line processor bijvoorbeeld
+aanspreken. Om dit profile uit te voeren in de huidige shell typ je het volgende:
+</p>
+
+<p align="center">
+<code>/home/db2istud/sqllib/db2profile</code>
+</p>
+
+<p>
+Om te vermijden dat je bij elke Spooky sessie opnieuw dit profile moet uitvoeren kan je een aanpassing maken in
+een configuratie file van je login shell. 
+Je maakt concreet de aanpassing in de file <code>.bash_profile</code> die zit in jouw home directory. Als je
+bent ingelogd via een shell zit je normaal gezien meteen in de home directory. Zo niet, dan typ je eerst <code>cd ~</code>.
+Je kan de configuratie file bewerken door te typen:
+</p>
+
+<p align="center"><code>vi .bash_profile</code></p>
+
+<p>
+Het programma <code>vi</code>  is een command line text editor. Je ziet nu de inhoud van  
+<code>.bash_profile</code> op het scherm. Gebruik de pijltjes toetsen om helemaal naar onderen te navigeren.
+Druk nu op de <code>INSERT</code> toets van je toetsenbord om de tekst te kunnen uitbreiden
+en typ ergens op een lege lijn het volgende:
+</p>
+
+<p align="center">
+<code>
+. /home/db2istud/sqllib/db2profile
+</code>
+</p>
+
+<p>
+Sluit nu de exitor af door de volgende sequentie uit te voeren
+<ol>
+<li><code>ESCAPE</code> toets</li>
+<li><code>:</code> toets
+<li>Typ dan <code>x</code> (dit slaat het bestand op)
+<li>Druk <code>ENTER</code></li>
+</ol> 
+</p>
+
+<p>Om de wijzingen actief te maken zonder opnieuw in te loggen type je het volgende:</p>
+
+<p align="center"><code>. .bash_profile</code></p>
+
+<p>De "." zorgt ervoor dat het profile wordt uitgevoerd in de huidige shell. Om te controleren
+of je nu toegang hebt tot de DB2 tools typ je:</p>
+
+<p align="center">
+<code>db2 "connect to gdbt"</code>
+</p>
+
+<p>Als alles goed is krijg je iets te zien in de volgende stijl:</p>
+
+<p align="center">
+	<code>
+   Database Connection Information
+
+ Database server        = DB2/LINUXX8664 9.5.4
+ SQL authorization ID   = ....
+ Local database alias   = GDBT
+ </code>
+ </p>
+
+</code>
+
+</td>
+
+</tr>
+</table>
+
+</body>
+</html>

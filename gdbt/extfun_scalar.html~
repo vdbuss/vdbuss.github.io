@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>Java external scalar function</h1></div>
+
+<table align="center" width="60%">
+<tr>
+<td>
+
+<ul>
+<li>We maken gebruik van de Java SDK die bij DB2 wordt geleverd. Dit wordt aangeraden in de DB2 manual om zeker
+compatibele compilaties te krijgen.
+</li>
+<li>We geven de voorbeelden via de command line. </li>
+
+</ul>
+
+</td>
+</tr>
+
+<tr><td>
+Opdat onze Java implementatie van de external function kan opgeroepen worden door DB2 moeten we een bepaald 
+formaat navolgen in de method declaratie. 
+Voor scalar external functions wordt aangeraden de <q>PARAMETER STYLE JAVA</q>  te
+gebruiken. 
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0023924.html" >
+(parameter styles)
+</a>
+</p>
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0023927.html" >
+(parameter style Java)
+</a> 
+</p>
+</td></tr>
+
+<tr><td>
+Van zodra onze Java code gecompileerd is kunnen we de resulterende class files in een Java <q>jar</q> file verzamelen.
+Het beheren van de jar files via DB2 gaat via een drietal procedures die kunnen  worden opgeroepen vanuit de command
+line:
+<ul>
+<li>sqlj.install_jar</li>
+<li>sqlj.replace_jar</li>
+<li>sqlj.remove_jar</li>
+</ul>
+
+Tijdens het maken van de oefeningen zal je soms een nieuwe implementatie van een external function willen testen. 
+Om DB2 duidelijk te maken dat je de nieuwe implementatie wil gebruiken moet je de class files <q>refreshen</q>.
+
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/r0006425.html" >
+(jar files)
+</a>
+</p>
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/t0006410.html">
+(how to refresh)
+</a>
+
+</p>
+
+</td></tr>
+
+<tr>
+<td>
+	Uitleg over het registreren van de external scalar functions.
+	<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.sql.ref.doc/doc/r0004461.htm" >
+	(hier)
+	</a>
+</td>
+</tr>
+
+</table>
+
+</body>
+</html>

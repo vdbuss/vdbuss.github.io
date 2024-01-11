@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>SQLJ</h1></div>
+
+<table align="center" width="60%">
+<tr>
+<td>
+
+<p>Belangrijk is dat je de <code>db2profile</code> hebt geladen, zoals beschreven <a href="spooky_setup.html#db2profile" >hier</a>, omdat anders je niet zal kunnen compileren.</p>
+
+<h3>Inleiding</h3>
+
+<p>Het gebruik van <code>SQLJ</code> laat toe om SQL te schrijven in een Java klasse. We spreken hier ook wel van <q>embedded SQL</q>. Voor C/C++ bestaan gelijkaardige uitbreidingen. Deze code kan je niet rechtstreeks compileren met de gewone <code>Java</code> compiler, maar moet eerst door een speciale preprocessor verwerkt worden die wordt aangeleverd door DB2. Deze preprocessor is in staat om de SQL code op voorhand te controleren en te optimaliseren, wat bij gewone JDBC niet het geval is. SQLJ is niet specifiek uitgevonden voor IBM DB2, maar wordt ook ondersteund door bijvoorbeeld Oracle.
+</p> 
+
+<p>JDBC ondersteunt in essentie <q>dynamic SQL</q>: een SQL statement wordt door het DBMS gecompileerd iedere keer het statement wordt uitgevoerd. Dit laat toe dat de applicatie SQL expressies on-the-fly kan genereren.<br>
+De compilatie van een SQL uitdrukking in JDBC resulteert in een uitvoeringsplan voor het verkrijgen van de gevraagde gegevens. Als vaak hetzelfde statement moet worden uitgevoerd, is dit mechanisme dus niet zo interessant want het compileren van het statement kost immers tijd. Het is wel zo dat je dit tijdverlies gedeeltelijk kan opvangen door <code>PreparedStatement</code>-objecten te gebruiken. De compilatie van een <code>PreparedStatement</code> gebeurt slechts &eacute;&eacute;n keer. Bij een volgende uitvoering van zo'n statement hoef je enkel eventuele parameterwaarden in te stellen in het reeds aanwezige <code>PreparedStatement</code>-object en het DBMS gebruikt hetzelfde uitvoeringsplan telkens opnieuw. Als de applicatie echter herstart wordt, dan zullen de <code>PreparedStatement</code>-objecten opnieuw moeten aangemaakt worden.
+</p>
+
+<p>
+Het tegenovergestelde van dynamic SQL is <q>static SQL</q> waarbij telkens dezelfde SQL expressie wordt gebruikt (op de waarden van constanten na). Bij het gebruik van embedded SQL kan je de static SQL statements uit jouw applicatie op voorhand laten compileren door het DBMS. Er wordt dan een <q>package</q> in de database aangemaakt met daarin de uitvoeringsplannen voor deze statements. Ze moeten daardoor dan niet telkens opnieuw gecompileerd worden.
+</p>
+
+
+
+<h3>Preprocessor</h3>
+
+<p>De broncode van een SQLJ programma bestaat uit gewone Java code aangevuld met SQL statements. Om een onderscheid te maken tussen Java code en SQL statements, worden de SQL statements in een specifieke syntax geplaatst die er ruwweg als volgt uitziet:</p>
+ 
+<pre>
+#sql [ctx] { SQL statement };
+</pre>
+
+<p>De expressie <q>ctx</q> duidt de context aan waarin het SQL statement wordt uitgevoerd, waarover zodadelijk iets meer wordt verteld.</p>
+
+<p>
+Het SQL statement wordt geverifieerd volgens de syntactische regels van SQL en niet volgens die van Java. Om de broncode in een uitvoerbaar programma om te zetten, worden er een aantal stappen doorlopen. Allereerst wordt de broncode geëvalueerd door de SQLJ preprocessor. Deze doorloopt de broncode op zoek naar SQL statements en wanneer een SQL statement gevonden wordt, wordt het getest op correctheid:</p>
+
+<ul>
+   <li>Bestaan de tabellen en de kolommen?</li>
+   <li>Zijn de data types van bepaalde Java variabelen compatibel met die van de kolommen?</li>
+   <li>enz</li>
+</ul>
+
+Als de preprocessor de SQLJ broncode succesvol heeft verwerkt, worden Java source files gegenereerd waarin de SQL statements vervangen zijn door Java code.  Daarnaast worden er ook andere bestanden gegenereerd, de zogenaamde <q>SQLJ profiles</q>. Deze bestanden bevatten informatie over de SQL statements in het Java programma. De Java source files kunnen nu door een gewone java compiler worden omgezet.<br>
+
+
+<!-- _________________________________________ -->
+
+<h3>Handleiding</h3>
+
+
+<p>We geven hieronder enkele links naar de DB2 handleiding:</p>
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.java.doc/doc/c0052042.html" >
+SQLJ main</a>
+</p>
+
+<p>Bekijk zeker het <a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.java.doc/doc/cjvsjbas.html" >voorbeeld</a>. In dit voorbeeld zie je onder andere de syntax die je kan gebruiken om <code>SELECT</code> en <code>UPDATE</code> statements uit te voeren.</p>
+
+<p>
+SQLJ lijkt eigenlijk sterk op JDBC, zoals in het gebruik van de <code>DriverManager</code> om een <code>Connection</code> te bekomen. Om de communicatie tussen het SQLJ programma en het DBMS mogelijk te maken zijn dezelfde drivers (jar-files) nodig als voor JDBC, aangevuld met SQLJ specifieke runtime klassen. Als je de <a href="spooky_setup.html#db2profile"><code>db2profile</code></a> correct hebt uitgevoerd bevinden al deze Java libraries zich normaal al in de CLASSPATH.</p>
+
+<h4>Connection context</h4>
+<p>
+Bij SQLJ wordt het <code>Connection</code>-object &ndash gekend van bij JDBC &ndash gebruikt samen met een zogenaamd <q><code>connection context</code></q>-object om SQL statements uit te voeren en resultaten op te vragen via iterators. De connection context beheert eigenlijk de verbinding met de database. Een connection context <q>klasse</q> wordt bijvoorbeeld bovenaan de Java source file gedeclareerd en deze wordt dan geïnstantieerd at runtime.
+</p>
+      
+<p align="right">
+   <a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.java.doc/doc/t0025043.html" >connection context</a>   
+</p>
+
+<!--
+<p>De parameters in de constructor van een context klasse zijn: de url, de gebruikersnaam, het paswoord en een booleaanse waarde <code>autoCommit</code>. Indien deze laatste waarde true is, zal elk update, select en insert statement automatisch worden gecommit. Indien de <code>autoCommit</code> parameter false is, zal er pas een commit gebeuren wanneer het SQL statement COMMIT wordt uitgevoerd (bij een ROLLBACK zullen de wijzigingen ongedaan gemaakt worden).</p>
+-->
+     
+<h4>Data retrieval</h4>
+
+<p>
+Als je zeker weet dat het resultaat van een SQL statement slechts uit &eacute;&eacute;n tuple bestaat, kan je de waarden van dat tuple rechtstreeks stockeren in Java variabelen. Stel dat we een eenvoudige tabel hebben, genaamd <code>person</code>, met attribuut <code>id</code> (welke een primary key is) en attribuut <code>name</code>. We kunnen de naam van de persoon met id 1 opvragen als volgt (let op de dubbele punt!):
+</p>
+
+<pre>
+  String strName;
+  #sql [ctx] {SELECT name INTO :strName
+        FROM person
+        WHERE id = 1
+       };  
+</pre>
+
+<p>Hierbij is <code>ctx</code> een connection context object. Als het resultaat van een SQL statement meer dan &eacute;&eacute;n tuple kan bevatten, maak je gebruik van een result set iterator. Deze kan je bijvoorbeeld declareren bovenaan de klasse. Je geeft een naam aan deze iterator en je benoemt de attributen en bijhorende types van de tuples in de result set.</p>
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.java.doc/doc/cjvsjrtv.html">data retrieval</a>
+</p>
+     
+
+<h4>Opmerking</h4>
+<p>het is voor de oefeningen niet nodig allerlei geavanceerde opties van SQLJ te gebruiken zoals <q>execution contexts</q>, het tunen van SQLJ profiles, enz. We verwachten voor de oplossingen van de oefeningen enkel relatief eenvoudige SQLJ programma's, in de aard van het <a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.java.doc/doc/cjvsjbas.html" >voorbeeld</a> in de handleiding.</p>
+
+
+<!-- __________________________________________________ -->
+
+<h3>Compileren</h3>
+
+<p>Veronderstel een eenvoudige tabel <a href="files/person.db2"><code>person</code></a>. We hebben een voorbeeld SQLJ programma gemaakt (<a href="files/SqljTest.sqlj">SqljTest.sqlj</a>), gebaseerd op het voorbeeld uit de DB2 handleiding. We hebben net zoals bij <a href="jdbc.html">JDBC</a> er voor gezorgd dat er geen paswoord moet ingegeven worden. We volgen nu de instructies in de DB2 handleiding om deze code te compileren.</p>
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.java.doc/doc/t0007051.html" >
+building sqlj applications
+</a>
+</p>
+
+<p>Je hebt een scriptje <q><code>bldsqlj</code></q> nodig dat wordt aangeleverd door DB2. Dit scriptje bevindt zich in de directory <code>/home/db2istud/sqllib/samples/java/sqlj</code>. Opdat je dit scripje kan uitvoeren kan je dit beter kopiëren naar jouw eigen home directory  (of een gewenste submap) als volgt:</p>
+
+<pre>cp /home/db2istud/sqllib/samples/java/sqlj/bldsqlj ~/bldsqlj</pre>
+
+<p>Hierbij is <q><code>cp</code></q> een kopiëer commando. Het symbool <q>~</q> staat op een unix systeem steeds voor het pad naar jouw home directory. Je moet vervolgens nog de permissions veranderen zodat je de <q>execute</q> bewerking kan doen:</p>
+
+<pre>chmod u+x ~/bldsqlj</pre>
+
+<p>Dit commando drukt uit dat we aan de <b>U</b>ser (jezelf) de e<b>X</b>ecute bevoegdheid toekennen op het scriptje. Stel voor de eenvoud dat het scriptje in dezelfde directory staat als jouw SQLJ source code. Ga naar die directory. Nu kan je compileren als volgt:</p>
+
+<pre>./bldsqlj SqljTest <u>username</u> <u>password</u> spooky.uhasselt.be 50002 gdbt</pre>
+
+<p>Hierbij moet je dus nog jouw eigen account-naam op spooky invullen en je passwoord. Je mag ipv <q>spooky.uhasselt.be</q> ook op de Spooky server zelf de string <q>localhost</q> gebruiken. Het poortnummer <q>50002</q> is dat van de database instance <code>db2istud</code> (zie ook <a href="spooky_setup.html">hier</a>) waarin de database van het vak (gdbt) is ondergebracht. Er worden nu een aantal files gegenereerd, inclusief een gecompileerde <code>.class</code> file met de naam van jouw SQLJ klasse.<br>
+Om de code nu uit te voeren typ je:</p>
+
+<pre>java SqljTest</pre>
+
+<h3>Meer informatie</h3>
+
+<p>Op het web vind je een aantal artikels waarin de voordelen van <code>SQLJ</code> ten opzichte van <code>JDBC</code> worden besproken. Als je geïnteresseerd bent kan je bijvoorbeeld op de volgende links wat meer lezen. In de DB2 handleiding vind je natuurlijk meer gedetailleerde informatie.</p>
+
+<p align="right">
+
+<a href="http://www.ibm.com/developerworks/data/library/techarticle/0302tsui/0302tsui.html">
+<code>http://www.ibm.com/developerworks</code>
+</a><br>
+
+<a href="http://www.developer.com/db/article.php/3556006/Introduction-to-SQLJ.htm" >
+<code>www.developer.com</code>
+</a>
+
+</p>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>

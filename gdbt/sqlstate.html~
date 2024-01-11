@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>SQLSTATE</h1></div>
+
+<table align="center" width="60%">
+<tr><td>
+
+<h3>Inleiding</h3>
+
+<p>Een relationeel database systeem geeft na elke bewerking een zogenaamde <q><code>SQLSTATE</code></q> waarde terug. Dat zijn vijf alfanumerieke tekens waaruit ofwel kan afgeleid worden dat alles zonder problemen is verlopen ofwel niet. Je zal bij het maken van de oefeningen steeds bij het uitvoeren van SQL statements de <code>SQLSTATE</code> waarde kunnen bekijken.</p>
+
+<h3>Command line processor</h3>
+
+<p>Als je meer toelichting wil bekomen bij een bepaalde <code>SQLSTATE</code>, dan kan je deze meegeven aan de <a href="db2clp.html">db2 command line processor</a>. Als we bijvoorbeeld meer uitleg willen over de <code>SQLSTATE</code> <q>02000</q> kunnen we het volgende commando uitvoeren:</p>
+
+<pre>db2 ? 02000</pre>
+
+<h3>Manual</h3>
+
+<p>Alle <code>SQLSTATE</code> waarden kan je bekijken op de volgende link:</p>
+
+<p align="right">
+<a href="" >SQL</a>
+</p>
+
+</td></tr>
+</table>
+
+
+
+</body>
+</html>

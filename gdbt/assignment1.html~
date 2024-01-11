@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>Assignment 1</h1></div>
+
+<table align="center" width="60%" >
+
+<tr><td>
+
+<p>Hieronder geven we enkele richtlijnen die dienen nagevolgd te worden bij het inleveren van de oefeningen.</p>
+
+<div style="text-align: center"><h3>Algemeen</h3></div>
+
+<ul>
+   <li>Zorg ervoor dat de oplossingen compileren en uitvoerbaar zijn op de Spooky server zelf (dus zonder SSH tunnels in de context van de Java oefeningen).</li>
+</ul>
+
+</td></tr>
+
+</table>
+
+</body>
+</html>

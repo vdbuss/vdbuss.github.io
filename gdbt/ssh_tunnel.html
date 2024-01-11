@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>SSH tunnel</h1></div>
+
+<table align="center" width="60%">
+<tr>
+<td>
+
+<p>
+De <code>Spooky</code> server laat slechts beperkte remote connecties toe. Enkele beveiligde kanalen zoals bijvoorbeeld <code>ssh</code> worden toegelaten.</p> 
+
+<!--
+<p>
+De DB2 instance <code>db2istud</code> waarin de database <code>gdbt</code> van het vak in onder gebracht is luistert naar de poort <code>50002</code>. Dit poort-nummer moet je onder andere in een <a href="jdbc.html" >JDBC</a> toepassing opgeven als je een verbinding tot stand wil brengen.
+</p>
+-->
+
+<p>Als je jouw oefeningen laat uitvoeren op de <code>Spooky</code> server (of vanop je eigen computer maar binnen het UHasselt netwerk) kan je zonder problemen de verbinding met de <code>db2istud</code> instance maken. Als je jouw oefeningen toch laat uitvoeren via een internet-verbinding, bijvoorbeeld vanuit jouw thuis, dan zal de connectie worden geblokkeerd omdat deze niet voldoende beveiligd is. Om dat te vermijden kan je een <code>SSH</code> tunnel opzetten. Dat betekent dat je een SSH-client opstart op jouw eigen computer dat een luistert naar een lokale poort. Dit programma zal alle inkomende berichten op die poort doorsturen naar de <code>Spooky</code> server via een beveiligde SSH verbinding, welke normaal gezien niet meer zal geweigerd worden. Hoe je specifiek een SSH tunnel moet opzetten hangt af van welke SSH client je gebruikt.</p>
+
+<p align="right">
+<a href="http://en.wikipedia.org/wiki/Tunneling_protocol" >
+(Zie "Secure Shell tunneling" op wikipedia)
+</a><br>
+<a href="http://realprogrammers.com/how_to/set_up_an_ssh_tunnel_with_putty.html" >
+(Voorbeeld SSH tunnel Putty)
+</a>
+</p>
+
+<p>Stel dat op jouw eigen computer de lokale poort <q>50000</q> de SSH tunnel voorstelt. Zonder SSH tunneling zou de JDBC url <q>jdbc:db2://spooky.uhasselt.be:50002/gdbt</q> zijn terwijl met tunneling de JDBC url <q>jdbc:db2://127.0.0.1:50000/gdbt</q> zou zijn. Hierbij is <q>127.0.0.1</q> het ip-adres dat op elke computer normaal gezien de computer zelf aanduidt. De lokale poort kan ook een ander nummer zijn dan <q>50000</q>, maar je moet ervoor zorgen dat het al niet door een ander programma of netwerk protocol wordt gebruikt.</p>
+
+<p>Als eenmaal de SSH tunnel is ingesteld moet je vanuit een programma een verbinding maken met jouw eigen lokale computer, en dan meer specifiek met de poort die de SSH tunnel voorstelt. Je stuurt dan boodschappen naar deze lokale poort.</p>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,591 @@
+<h1>Computer Confluence: vragen en antwoorden</h1>
+In dit vak volgen we voor de theorie het boek <em>Computer Confluence,
+Sixth Edition, Introductory edition</em> van George Beekman,
+uitgegeven door Prentice Hall (2005).
+Hier vind je de antwoorden op vragen die studenten hebben gesteld over dit
+boek.
+<p>
+<strong>Hoe een vraag stellen?</strong> Stuur je vraag in een email, 
+met subject
+"vraag Computer Confluence",
+naar het email adres van Jan Van den Bussche:
+<address>jan.vandenbussche@uhasselt.be</address>
+<p>
+<hr>
+<a name="na">
+<h2>Algemene vragen</h2>
+<ul>
+<li>
+<em>
+Kan de uitgave van het boek die vorig jaar werd gebruikt,
+ook dit academiejaar nog gebruikt worden?
+</em>
+<p>
+In het academiejaar 2002-2003, en ook het academiejaar daarvoor, gebruikten we
+de "Fifth Edition, Concise Edition" van het boek.  Die uitgave is
+niet zo up-to-date als de uitgave
+die we dit jaar volgen, maar je kan het er nog wel mee doen, op voorwaarde dat
+je je goed bewust bent van de
+belangrijkste verschillen tussen de oude en de nieuwe uitgave:
+<ul>
+
+<li> Het oude hoofdstuk 5 is gesplitst in drie hoofdstukken 5, 6, en 7,
+waardoor op enkele onderwerpen nu dieper wordt ingegaan.  Je vindt deze
+onderwerpen hierna in dit lijstje.  <strong>Dit bijkomend materiaal zal je
+  dus moeten kopi&euml;ren en extra bijstuderen!</strong>
+
+<li>
+"Beyond the Printed Page", blz 173-175.
+<li>
+"Spreadsheet Graphics", blz 181-182.
+<li>
+Het stukje over de taal PostScript, blz 208.
+<li>
+"Computers and Audio", blz 217-222.
+<li>
+"Database Trends", blz 253-257
+<li>
+De oude hoofdstukken 6 en 7 zijn nu dus hoofdstukken 8 en 9 geworden.  Een en
+ander is van plaats verwisseld in deze hoofdstukken, maar grosso modo is de
+totale inhoud van de oude hoofdstukken 6 en 7 gelijk aan die van de nieuwe
+hoofdstukken 8 en 9.
+<li>
+Het oude hoofdstuk 8 is eveneens grosso modo gelijk aan het nieuwe hoofdstuk
+10.
+<li>
+In het oude boek was ook nog een hoofdstuk 9, maar dat is weggevallen in het
+nieuwe boek (met uitzondering van het allerlaatste stukje "Human Questions for
+a Computer Age", dat op het einde van het nieuwe hoofdstuk 10 is ingelast).
+Je hoeft, met uitzondering van dat stukje, het oude hoofdstuk 9 dus niet meer
+te studeren voor het examen.
+</ul>
+<p>
+<li>
+<em>
+  Waar kan ik de oplossingen van de vragen op het einde van elk hoofdstuk
+  vinden?
+</em>
+<p>
+Die vind je terug in het boek zelf!  Met behulp van de index achteraan zou je
+gemakkelijk de relevante passage moeten kunnen vinden.
+<li>
+<em>
+  Hoe is de puntenverdeling theorie-programmeren op het examen?
+</em>
+<p>
+Fifty-fifty.
+<li>
+<em>
+  Hoe verloopt het examen praktisch?
+</em>
+<p>
+Je begint met het theorie-examen, dit is gesloten-boek, multiple-choice.
+<strong>De multiple-choice formulieren moeten met potlood ingevuld
+  worden.</strong>  Nadat je je theorie-examen hebt ingeleverd kan je beginnen
+aan de programmeer-oefeningen, waarbij je je cursus mag gebruiken.
+<li>
+<em>
+  Worden er punten afgetrokken voor een foutief antwoord op het theorie-examen
+  (multiple-choice)?
+</em>
+<p>
+Neen.
+</ul>
+<p>
+<hr>
+<a name="n0">
+<h2>Hoofdstuk 0</h2>
+<p>
+<hr>
+<a name="n1">
+<h2>Hoofdstuk 1</h2>
+<p>
+<ul>
+  <li>
+  <em>
+    Wat bedoelt men juist met volgende termen?
+  </em>
+  <p>
+  <dl>
+    <dt>
+    Server, workstation, PC:
+    <dd>
+    Een server is een krachtige computer die voor
+    meerdere gebruikers tegelijk kan werken, of die meerdere taken tegelijk
+    kan uitvoeren.  Een PC is een computer voor persoonlijk gebruik.  Een
+    workstation is een zeer krachtige PC, die voor bepaalde doeleinden ook als
+    server kan diene; dus een computer die qua kracht
+    in het midden ligt tussen een PC en een server.
+    <dt>
+    Desktop replacement:
+    <dd>
+    Normaal werkt men op het bureel op een desktop computer (het typische
+    formaat PC, dus een bak, een scherm, en een toetsenbord), en werkt men op
+    een draagbare computer (meestal laptop of portable genoemd) als men op
+    verplaatsing moet.  Meer en meer mensen echter gebruiken 1 enkele laptop
+    als computer, en gebruiken die ook op hun bureau.  We spreken dan over
+    "desktop replacement".
+    <dt>
+    Docking station, port replicator:
+    <dd>
+    Je mag de term "port replicator" vergeten;
+    het is een synoniem voor de veel meer gebruikte term "docking station".
+    <dt>
+    Embedded computer:
+    <dd>
+    Een computer (typisch special-purpose) die ingebouwd zit in een ander
+    toestel.  Bijvoorbeeld, moderne wagens zitten propvol embedded computers,
+    bijvoorbeeld voor het ABS.  Ook een mobiele telefoon, of een digitale
+    camera, bevat een embedded computer.  De meeste moderne apparaten bevatten
+    embedded computers.
+    <dt>
+    Network computer:
+    <dd>
+    Een computer speciaal bedoeld om vanop afstand, via het netwerk, te werken
+    op een server (host system, zie Hoofdstuk 8).  Een network computer
+    is dus een special-purpose computer, en
+    doet typisch
+    niet veel meer dan op het scherm te tonen wat de host computer doorstuurt,
+    en wat jij op het toetsenbord of met je muis intikt op zijn beurt door te
+    sturen naar de host computer.  Network computers zijn nog
+    vrij zeldzaam, zeker in Europa.
+    <dt>
+    Set-top box:
+    <dd>
+    Een soort van network computer (zie hierboven) die je
+    aansluit op je TV waardoor je via de server van de
+    kabelmaatschappij op het Internet
+    kan, of op andere netwerken (zoals bijvoorbeeld het netwerk van de
+    kabelmaatschappij zelf waarmee ze video on demand aanbieden).
+    <dt>
+    Information appliance:
+    <dd>
+    Verzamelnaam voor network computers specifiek bedoeld om een consument
+    toegang tot het Internet (of andere netwerken) te verlenen zonder een
+    echte PC.  Set-top boxes (zie hierboven) zijn dus een bepaald soort
+    information appliances, die via de TV werken.  Een mobiele telefoon
+    waarmee je op het Internet kan is een ander voorbeeld van een information
+    appliance.
+    <dt>
+    High-end computer:
+    <dd>
+    Een zeer krachtige computer.
+    <dt>
+    Stripped-down computer, full-blown PC:
+    <dd>
+    De Engelse term "full-blown" betekent "volledig", dus een full-blown PC is
+    gewoon een PC met alles erop en eraan.  De Engelse term "stripped-down"
+    is zowat het omgekeerde van "full-blown": een stripped-down computer is
+    een computer met erg beperkte functionaliteit, zoals een network computer
+    (zie hierboven).
+  </dl>
+  <li>
+  <em>
+    Wat bedoelt men met "artificial intelligence"?
+  </em>
+  <p>
+  Dat is een verzamelnaam voor alle software die de computer taken laat
+  uitvoeren waar we van uitgaan dat ze een zekere intelligentie vereisen: het
+  begrijpen van taal bijvoorbeeld, of het stellen van een medische diagnose
+  vanuit gegeven symptomen is een ander voorbeeld.  Artificial intelligence is
+  een groot wetenschappelijk gebied dat verbanden heeft met bijna alle 
+  andere wetenschappen.
+  <li>
+  <em>
+    Is Powerpoint een voorbeeld van "desktop publishing"?
+  </em>
+  <p>
+  Neen.  Desktop publishing is software gebruikt in de uitgeverijsector
+  (zoals kranten of magazines).  Hier wordt dieper op ingegaan in hoofdstuk 5
+  van het boek.
+  <li>
+  <em>
+    Wat moeten we juist kennen over sociale en ethische kwesties?
+  </em>
+  <p>
+  Die discussie behoort wel degelijk tot de leerstof,
+  maar je hoeft hiervan niet elk detail van buiten te leren.
+</ul>
+<hr>
+<a name="n2">
+<h2>Hoofdstuk 2</h2>
+<p>
+<ul>
+  <li>
+  <em>
+    Wat bedoelt met met volgende termen?
+  </em>
+  <p>
+  <dl>
+    <dt>
+    Internal clock:
+    <dd>
+    De processor voert instructies uit met de regelmaat van een klok.  Moderne
+    processoren voeren meer dan een miljard elementaire instructies uit per
+    seconde.  De architectuur van de processor bevat dan ook daadwerkelijk
+    een electronische klok die dit synchroniseert.
+    <dt>
+    Volatile memory, ROM, firmware:
+    <dd>
+    Volatile memory is geheugen waarvan je de inhoud
+    kwijt bent als je de stroom uitschakelt.  Bijvoorbeeld, het normale
+    inwendige geheugen van een PC (het RAM genoemd)
+    is volatile (Nederlands: vluchtig).  Maar in een computer
+    zitten ook een aantal geheugenchips die
+    <em>nonvolatile</em> (niet vluchtig)
+    zijn.  Zo bijvoorbeeld het ROM, of recenter het flash memory dat het
+    voordeel heeft op ROM dat de inhoud nog gewijzigd kan worden.
+    Nonvolatile geheugen bevat dikwijls "firmware": dit is software die vast
+    in een nonvolatile geheugenchip van de computer is opgeslagen.
+    Een voorbeeld van firmware in een gewone PC is
+    het opstartprogramma voor
+    wanneer de computer wordt ingeschakeld.
+    In een GSM (die een embedded computer bevat) is
+    het volledige computerprogramma dat de werking van het
+    apparaat bestuurt, helemaal firmware.
+    Nonvolatile geheugen kan ook nog andere dingen bevatten dan firmware,
+    bijvoorbeeld het adresboek op je GSM.
+  </dl>
+  <li>
+  <em>
+    Is een host computer hetzelfde als een server?
+  </em>
+  <p>
+  Een host computer is een speciaal soort server waarop men vanop afstand kan
+  werken.  "Server" is een veel algemenere term die slaat op elk soort
+  computer
+  die diensten levert aan andere computers.
+  <li>
+  <em>
+    Zijn de "how it works" leeskaders examenstof?
+  </em>
+  <p>
+  Zoals alle soorten leeskaders (overzicht op paginas xx een xxi van het boek)
+  zijn deze geen examenstof, wel mogelijk nuttig leesmateriaal.  Het is
+  logisch dat in dit technische hoofdstuk, over computer hardware, nogal veel
+  "how it works" kaders voorkomen.
+</ul>
+<p>
+<hr>
+<a name="n3">
+<h2>Hoofdstuk 3</h2>
+<p>
+<hr>
+<a name="n4">
+<h2>Hoofdstuk 4</h2>
+<ul>
+  <li>
+  <a name="javavraag">
+  <em>
+    Wat is een compiler?  En is Java niet gewoon een programmeertaal zoals
+    alle andere?  En wat zijn applets?
+  </em>
+  <p>
+  De processor van de computer kan enkel programma's uitvoeren in de
+  machinetaal van de processor.  Deze machinetaal bestaat uit een aantal
+  instructies, die elk een nummer hebben, en een programma in machinetaal is
+  dus een reeks zulke instructies; een reeks getalletjes dus; uiteindelijk,
+  een rij van bits op machineniveau.  Als mensen een programma schrijven doen
+  ze dat echter niet in deze machinetaal, omdat dit veel te onhandig is.  Wij
+  schrijven computerprogramma's in hogere programmeertalen, zoals Visual
+  Basic, maar er zijn er nog tal van andere, zoals C++, Fortran, Cobol,
+  en nog veel meer.  Als we een programma, geschreven bijvoorbeeld in Visual
+  Basic, echter willen laten uitvoeren door de computer, dient de
+  programmatekst nog worden omgezet naar machinetaal.  Dit gebeurt door een
+  speciaal systeemprogramma dat "compiler" genoemd wordt.  In de Visual Basic
+  programmeeromgeving, waarin we onze programmeeroefeningen maken, is de
+  compiler een belangrijke component.  Telkens we ons programma laten runnen
+  wordt de compiler achter de schermen opgeroepen.
+  <p>
+  Een buitenbeentje is Java, een hogere programmeertaal die door de Java
+  compiler niet helemaal wordt omgezet in machinetaal, maar wel in instructies
+  van een andere, laag-niveau taal ("Java bytecode" genaamd).  Een tweede
+  programma ("Java virtual machine" genoemd) kan zulke Java
+  bytecode-instructies dan uitvoeren.  Het voordeel is dat je een Java
+  programma kan laten uitvoeren door eender welke computer waarop zo'n Java
+  virtual machine loopt.  Als we ons programma willen kunnen draaien op 3
+  verschillende types van processoren (bijvoorbeeld een gewone PC, een Mac,
+  een mainframe), hoeven we het dus niet 3 keer te
+  compileren naar de 3 verschillende machinetalen.  Het volstaat dat er Java
+  virtual machines beschikbaar zijn voor deze 3 processoren.
+  Dit wordt de "platformonafhankelijkheid" van Java genoemd.
+  Een Java virtual machine kan ook verschillende stukjes Java-bytecode,
+  verspreid op het Internet, samenvoegen en uitvoeren als 1 globaal programma.
+  Daarom zegt men dat Java geintegreerd is met het Internet.
+  <p>
+  De meeste Web browsers bevatten zelf een Java virtual machine, zodat we
+  Java-programma's kunnen laten lopen binnenin een browservenster.  We noemen
+  zulke Java-programma's "applets".  Zulke applets worden veel gebruikt in
+  educatieve websites.  Als voorbeeld <a
+    href="http://www.jgiesen.de/sunearth/index.htm">deze website met een
+    applet die de beweging simuleert van de aarde rond de zon</a>.
+  <p>
+  <li>
+  <em>
+    Wat is het verschil tussen shareware en een demo versie?
+  </em>
+  <p>
+  Shareware is software die je vrij kan uitproberen, maar als je echt van plan
+  bent de software te gaan gebruiken verwacht de auteur van de software wel
+  dat je hem betaalt.  Een demo versie is eveneens software die je vrij kan
+  uitproberen, maar die niet alle functionaliteiten biedt van het volledige
+  pakket, dat je moet betalen.  Sommige demo versies bieden wel de volledige
+  functionaliteit, maar vallen uit na een aantal dagen, behalve als je
+  betaalt.  De grens tussen shareware en demo versies is dus niet echt scherp
+  te trekken.
+  <p>
+  <li>
+  <em>
+    Wat is het verschil tussen multitasking en concurrent processing?
+  </em>
+  <p>
+  Je mag deze twee termen als synoniemen beschouwen.
+  <p>
+  <li>
+  <em>
+    Wordt het virtueel geheugen opgeslagen op de harde schijf?
+  </em>
+  <p>
+  Inderdaad.
+  <p>
+  <li>
+  <em>
+    Behoren device drivers tot het besturingssysteem?
+  </em>
+  <p>
+  Het besturingssysteem komt standaard met een heleboel device drivers voor de
+  basisrandapparatuur zoals scherm, toetsenbord, harde schijf, enzovoort.
+  Voor bijkomende randapparatuur die je je aanschaft, bijvoorbeeld een
+  nieuwe printer, heb je dan
+  bijkomende device drivers nodig die niet altijd reeds aanwezig zijn.  Je mag
+  device drivers beschouwen als onderdelen van het besturingssysteem.
+  <p>
+  <li>
+  <em>
+    Zijn command-line en menu-driven interfaces character-based?
+  </em>
+  <p>
+  Ja, aangezien ze beiden louter met behulp van tekstboodschappen werken.
+  <p>
+  <li>
+  <em>
+    Is UNIX louter een besturingssysteem dat verschillende gebruikers toelaat
+    op de computer?  Kan Windows dat dan ook niet?
+  </em>
+  <p>
+  Neen, UNIX is meer dan dat, het is
+  gewoon een ander type van besturingssysteem dan Windows.  UNIX
+  laat inderdaad toe dat verschillende gebruikers <strong>tegelijk</strong> op
+  de computer kunnen werken (dankzij concurrent processing, en
+  met behulp van verschillende schermen en
+  toetsenborden uiteraard).  Het is juist dat de recentste versies van Windows
+  dit ook toelaten (wordt daar "remote desktop" genoemd).
+  <p>
+  <li>
+  <em>
+    Linux is "open source" software.  Betekent dat gewoon dat het gratis
+    aangeboden wordt?  Heeft het voor de rest quasi dezelfde mogelijkheden als
+    UNIX?
+  </em>
+  <p>
+  Linux is inderdaad erg verwant met UNIX.  Dat het "open source" is betekent
+  niet slechts dat het gratis is.  Het betekent dat het volledige programma
+  (een besturingssysteem is tenslotte ook een programma, zij het een heel
+  complex) vrij in te kijken is, het is dus geen bedrijfsgeheim hoe Linux in
+  elkaar zit.  Iedere capabele computerprogrammeur met een beetje vrije tijd 
+  kan aan Linux meewerken.  Linux wordt door een hele gemeenschap van
+  programmeurs onderhouden en aangepast.
+  <p>
+  <li>
+  <em>
+    Wat is .NET?
+  </em>
+  <p>
+  .NET is het antwoord van Microsoft op Java.  Het is een alternatief voor de
+  Java virtual machine, speciaal ontworpen voor het Windows besturingssysteem.
+  Ruwweg dezelfde eigenschappen van de Java virtual machine (hierboven
+  beschreven bij de <a href="#javavraag">vraag over compilers en Java</a>)
+  gelden ook voor .NET, zo ook de integratie met het Internet.
+  <li>
+  <em>
+    Wat is een utility program?
+  </em>
+  <p>
+    Een programma dat een nuttige bijkomende
+    systeemtaak uitvoert die niet reeds door het
+    besturingssysteem zelf wordt vervuld.  Een typisch voorbeeld
+    van een utility program is een virus checker.  Vele utility programs komen
+    gebundeld samen met het besturingssyteem, en je kan ze dan eigenlijk
+    beschouwen als deel uitmakend van dat besturingssysteem.  De grens tussen
+    de utility programs en het besturingssysteem zelf is dus niet echt scherp
+    te trekken.
+</ul>
+<p>
+<hr>
+<a name="n5">
+<h2>Hoofdstuk 5</h2>
+<ul>
+  <li>
+  <em>
+    Wat is het verschil tussen "editing" en "formatting" van tekst?
+  </em>
+  <p>
+  Met "editing" (Nederlands: redigeren) bedoelt men de tekst zelf aanpassen;
+  met "formatting" bedoelt men het uitzicht van de tekst, dus dingen zoals
+  lettertype, uitlijning, regelbreedte, enz.
+  <li>
+  <em>
+    Bij groupware, laat de "Track Changes" functie van Microsoft Word toe dat
+    aanpassingen gemaakt door 1 persoon direct kunnen gezien worden door alle
+    andere personen?
+  </em>
+  <p>
+  Neen, bij gebruik van Word moet
+  het Word document moet nog wel steeds rondgestuurd worden, bijvoorbeeld per
+  email.  Meer gesofistikeerde groupware systemen laten wel toe dat
+  verschillende personen tegelijk werken aan een document en dat alle
+  veranderingen onmiddellijk worden verspreid.
+  <li>
+  <em>
+    Bij desktop publishing, wat bedoelt men precies met "typesetting"?
+  </em>
+  <p>
+  Typesetting is Engels voor "letterzetten", hiermee bedoelt men het bepalen
+  van de juiste lettertypes, en uiteindelijk ook het afdrukken van de tekst in
+  deze lettertypes.
+  <li>
+  <em>
+    Wat bedoelt men met een "stack chart"?
+  </em>
+  <p>
+  "To stack" is Engels voor "stapelen", een stack chart is dus een
+  superpositie van een aantal bar charts boven elkaar, bijvoorbeeld voor
+  verschillende jaren.  Enkele voorbeelden vind je in op
+  <a
+    href="http://www.nevron.com/Charting.aspx?nav=ChartNetGalleryNav&content=ChartNetBar">de
+    website van Nevron</a>.
+</ul>
+<p>
+<hr>
+<a name="n6">
+<h2>Hoofdstuk 6</h2>
+<ul>
+  <li>
+  <em>
+    Wat is de betekenis van volgende termen?
+  </em>
+  <p>
+  <dl>
+    <dt> CAM:
+    <dd> Staat voor Computer-Aided Manufacturing, dus een heel algemene term
+    die slaat op het gebruik van computers om het productieproces (in een
+    fabriek) effici&euml;nter te maken.
+    <dt> Bullet chart:
+    <dd> Een gedachtenlijstje waar we voor elke gedachte een bolletje
+    ("bullet") zetten, of een streepje of een puntje of dergelijke meer,
+    zoals in het volgende boodschappenlijstje:
+    <ul>
+      <li> melk
+      <li> bier
+      <li> brood
+      <li> afwasmiddel
+    </ul>
+    Je ziet bullet charts dikwijls op slides gebruikt voor lessen of
+    voordrachten.
+  </dl>
+  <li>
+  <em>
+    Wat zijn juist die peer-to-peer file sharing services waarover gesproken
+    wordt op pagina&nbsp;221?
+  </em>
+  <p>
+  Deze worden in meer detail besproken in hoofdstuk&nbsp;9 (pagina&nbsp;330 en
+  volgende).
+</ul>
+<p>
+<hr>
+<a name="n7">
+<h2>Hoofdstuk 7</h2>
+<ul>
+  <li>
+  <em>
+    Wat is de functie van "hot sync" tussen een PDA en een PC?
+  </em>
+  <p>
+  Wanneer je dezelfde gegevens bewaard zowel op je PDA als op je PC,
+  bijvoorbeeld een adressenbestand, en je doet een wijziging op je PC, wil je
+  deze wijziging automatisch laten doorvloeien naar je PDA, en omgekeerd, als
+  je een wijziging doet op je PDA, wil je die laten doorvloeien naar je PC.
+  Dit gebeurd m.b.v. de "hot sync" functie.  Een illustratie wordt gegeven in
+  het boek, pagina&nbsp;247.
+  <li>
+  <em>
+    Wat is het verschil tussen batch processing en interactive processing?
+  </em>
+  <p>
+  Bij batch processing gebeurt de gegevensverwerking niet continu, maar in
+  ladingen.  Bijvoorbeeld, een bank die alle overschrijvingen tussen
+  rekeningen die overdag gebeurd zijn, 's nachts pas definitief
+  verwerkt in de bestanden.
+  Dit staat tegenover interactive processing (ook wel "on line" of "real time"
+  processing genoemd) waar elke bewerking op de gegevens onmiddellijk wordt
+  uitgevoerd.
+  <li>
+  <em>
+    Wat bedoelt men met "centralized database" op pagina&nbsp;254?
+  </em>
+  <p>
+  Men bedoelt hier dat de gegevens in een centrale
+  database, op &eacute;&eacute;n enkele server (typisch een mainframe), zijn
+  opgeslagen, en dat enkel de informatici die de server beheren toegang hebben
+  tot de gegevens.  Dit was zo dertig jaar geleden!  Tegenwoordig is de
+  database dikwijls nog steeds centraal,
+  maar kunnen de gebruikers via toepassingssoftware op hun PC rechtstreeks met
+  gegevens uit die database werken.  Dit wordt verder besproken in het boek op
+  dezelfde pagina.
+</ul>
+<p>
+<hr>
+<h2>Hoofdstuk 8</h2>
+<p>
+<hr>
+<h2>Hoofdstuk 9</h2>
+<ul>
+  <li>
+  <em>
+    Wat bedoelt men met volgende termen?
+  </em>
+  <p>
+  <dl>
+    <dt> Dynamic HTML:
+    <dd>
+    Dit is enkele een verzamelnaam voor technologie&euml;n die gebruikt worden
+    om Webpagina's meer dynamiek te geven dan enkel lezen wat erop staan en
+    klikken op links.  Onder deze verzamelnaam vallen bijvoorbeeld CSS
+    en JavaScripts.
+    <p>
+    CSS is een technologie die de layout en de
+    user interface van
+    Webpagina's verbetert.  Een voorbeeld van een pagina die <em>geen</em> CSS
+    gebruikt is deze pagina!  Meer modern ogende websites, bijvoorbeeld die
+    van <a href="http://canvas.be">Canvas</a>, gebruiken volop CSS.
+    <p>
+    Een JavaScript is een programaatje dat je Web
+    browser uitvoert terwijl je de Web pagina gebruikt, waardoor de Web pagina
+    interactief wordt.  Een voorbeeld is deze
+    <a
+      href="http://home.wxs.nl/~mun/vme/eurocalc/eurocalc-uk.htm">EURO
+      calculator</a>.
+    (JavaScript heeft tussen haakjes weinig of niets
+    te maken met Java, de programmeertaal.)
+    <dt> Gateway:
+    <dd> Om een LAN (zoals op school) te koppelen aan een
+    WAN (zoals het Internet) is
+    gespecialiseerde
+    apparatuur nodig.  Zulke apparaten noemen we bridges (bruggen) of gateways
+    (doorgangen).  Je mag deze twee termen als synoniemen behandelen.
+  </dl>
+</ul>
+<p>
+<hr>
+<h2>Hoofdstuk 10</h2>

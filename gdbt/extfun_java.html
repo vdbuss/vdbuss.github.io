@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>Java external functions</h1></div>
+
+<!-- ================================================================================= -->
+
+<table align="center" width="60%" border="0"> 
+
+<tr align="left">
+<td>
+
+<p>Opdat je jouw code zou kunnen compileren is het belangrijk dat je de <code>db2istud</code> profile hebt uitgevoerd zoals beschreven <a href="spooky_setup.html#db2profile" >hier</a>. Het uitvoeren van dit profile plaatst de DB2 Java klassen op jouw <code>CLASSPATH</code>.
+</p>
+
+
+<h3>Ruw overzicht</h3>
+
+<p>Het maken van een external function bestaat altijd uit twee stappen: (1) het declareren van de function
+in DB2 met een DB2 <code>CREATE</code> statement en (2) de implementatie installeren in DB2. Het <code>CREATE</code> statement kan je plaatsen in een apart scriptje en het geeft aan hoe de database met de implementatie van de external function moet omgaan en waar deze zich bevindt. Je kan dus niet de implementatie gewoon deponeren in een folder en hopen dat de database dit automatisch gaat gebruiken. </p>
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0023741.html">
+(meer)
+</a>
+</p>
+
+<p>
+Opdat onze Java implementatie van de external function kan opgeroepen worden door DB2 moeten we een bepaald 
+formaat navolgen in de method declaratie. Dit formaat, genaamd <q>parameter style</q> bepaalt hoeveel 
+formele parameters een Java method moet hebben en ook welk type deze krijgen. 
+Voor Java kan men kiezen uit de parameter styles <code>DB2GENERAL</code> en <code>JAVA</code>. Bij het declareren van
+de function met het scriptje geef je aan welke parameter style je wil gebruiken. 
+Als je de parameter style <code>DB2GENERAL</code> gebruikt moeten we onze Java implementatie-klasse afleiden
+van een andere Java klasse die wordt aangeleverd door DB2. Daar gaan we later op in.</p> 
+
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0023924.html" >
+parameter styles</a>
+</p>
+
+<p>
+Van zodra onze Java code gecompileerd is kunnen we de resulterende class files in een Java <q>jar</q> file verzamelen.
+Het beheren van de jar files via DB2 gaat via een drietal procedures die kunnen  worden opgeroepen via de DB2 command
+line processor:</p>
+
+<ul>
+<li>sqlj.install_jar</li>
+<li>sqlj.replace_jar</li>
+<li>sqlj.remove_jar</li>
+</ul>
+
+<p>In de hierna volgende paragrafen wordt praktisch getoond hoe dit gebeurt. In de DB2 manual wordt opgemerkt dat alle uitvoerbare code van external functions moet terechtkomen in een subdirectory <code>sqllib/function</code> van de DB2 instance waarmee je werkt (<code>db2istud</code> voor ons). Daar zorgt de procedure <code>sqlj.install_jar</code> voor. Je moet dus <em>niet</em> handmatig files kopiëren.</p>
+
+<p>
+Tijdens het maken van de oefeningen zal je soms een nieuwe implementatie van een external function willen testen. 
+Om DB2 duidelijk te maken dat je de nieuwe implementatie wil gebruiken moet je de class files <q>refreshen</q>.
+</p>
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/r0006425.html" >
+jar file administration</a><br>
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/t0006410.html">
+updating Java routine classes</a>
+</p>
+
+
+<!-- ================================================================================= -->
+<!-- Concreet -->
+<hr>
+<h3>Scalar function</h3>
+
+<h4>Probleemstelling</h4>
+
+<p>
+Laten we een scalar external function schrijven die twee reële getallen als input neemt en een getal <code>1</code> teruggeeft als het eerste getal kleiner is dan het tweede en <code>0</code> anders. We interpreteren deze getallen als respectievelijk <code>true</code> en <code>false</code>. Voor deze functie hebben we geen scratchpad nodig.</p> 
+
+<h4>Versie 1</h4>
+
+<p>De eerste versie die we schrijven is in de parameter style <code>JAVA</code>. De naam van de Java klasse maakt niet uit, het is de method declaratie die telt:
+</p>
+
+<pre>
+import java.sql.SQLException;
+
+public class Scalar1 {
+
+	public static int smaller1(double a, double b) throws SQLException {
+           if(a < b)
+              return 1;
+           else
+              return 0;
+    }
+	
+} 
+</pre>
+
+<p>Het is bij dit type van scalar function nu niet mogelijk om de verschillende fasen van een oproep te onderscheiden.</p>
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0023927.html" >(link manual)</a>
+</p>
+
+<p>Veronderstel dat de gecompileerde versie van deze klasse is ondergebracht in een <code>JAR</code> file genaamd <code>extfunscalar.jar</code>, die staat in onze home directory. We installeren de jar file in DB2 als volgt:</p>
+
+<pre>
+db2 "call sqlj.install_jar('file:/home/.../extfunscalar.jar', 'extfunscalar')"
+</pre>
+
+ 
+<p>Hierbij moet je de '...' vervangen door je eigen account-naam. Het declareren van de external function in Java gaat met het volgende SQL <code>CREATE</code> statement.</p>
+
+<pre>
+CREATE FUNCTION smaller1( DOUBLE, DOUBLE )
+RETURNS INT
+EXTERNAL NAME 'extfunscalar:Scalar1.smaller1'
+LANGUAGE java
+PARAMETER STYLE JAVA
+DETERMINISTIC 
+FENCED THREADSAFE
+RETURNS NULL ON NULL INPUT
+NO SQL
+</pre>
+
+<p>In zulke <code>CREATE</code> statements zijn trouwens niet alle syntax-elementen verplicht neer te schrijven. Zie de manual voor meer informatie.</p>
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.sql.ref.doc/doc/r0004461.html" >
+create scalar function syntax
+</a>
+</p>
+
+<h4>Versie 2</h4>
+
+<p>Hoewel het niet nodig is om de parameter style <code>DB2GENERAL</code> te gebruiken voor deze functie kunnen we toch eens beschouwen hoe we die zouden toepassen. We moeten nu onze klasse afleiden van de klasse <code>COM.ibm.db2.app.UDF</code> die wordt aangeleverd door DB2. De code ziet er dan als volgt uit:</p>
+
+<pre>
+import COM.ibm.db2.app.UDF;
+
+public class Scalar2 extends UDF {
+
+    public void smaller2(double a, double b, int answer) throws Exception {
+
+        switch (getCallType()) {
+            case UDF.SQLUDF_FIRST_CALL:
+            // Hier eventueel een dure resource openen. In dit voorbeeld
+            // is dat niet nodig.
+
+            case UDF.SQLUDF_NORMAL_CALL:
+
+                // parameter a heeft index 1
+                // parameter b heeft index 2
+                // parameter answer heeft index 3
+
+                if (a < b) {
+                    set(3, 1);
+                } else {
+                    set(3, 0);
+                }
+
+                break;
+        }
+    }
+
+    @Override
+    public void close() throws Exception {
+        // Deze method wordt door DB2 aangeroepen als we de "FINAL CALL"
+        // optie neerschrijven in het CREATE FUNCTION statement.
+
+        // Hier cleanup doen van dure resources. (Hier niet nodig).
+    }
+}
+</pre>
+
+<p>Methods zoals <code>getCallType()</code> en <code>set(..., ...)</code> zijn beschikbaar via de DB2 Java klasse <code>COM.ibm.db2.app.UDF</code>. Het opvragen van het call type werkt als we <code>FINAL CALL</code> schrijven in de DB2 declaratie:</p>
+
+<pre>
+CREATE FUNCTION smaller2(DOUBLE, DOUBLE)
+RETURNS INT
+EXTERNAL NAME 'extfunscalar:Scalar2.smaller2'
+LANGUAGE java
+PARAMETER STYLE DB2GENERAL
+DETERMINISTIC 
+FENCED THREADSAFE
+RETURNS NULL ON NULL INPUT
+NO SQL
+NO SCRATCHPAD
+FINAL CALL
+</pre>
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0003369.html" >
+(meer)
+</a>
+</p>
+
+<h4>Implementatie</h4>
+
+<p>Download deze voorbeelden en bijhorende scriptjes <a href="files/scalar.zip" >hier</a>. Unzip de files in jouw home directory. Belangrijk: je zal in het installatie shell scriptje op een bepaalde plaats de <q>...</q>  moeten veranderen naar jouw eigen account naam. Het installatie-scriptje en test-scriptje uitvoeren doe je als volgt:</p>
+
+<pre>
+. scalarinstall.sh
+. scalartest.sh
+</pre>
+
+<p>Open de scriptjes ook eens om te zien wat er allemaal achterliggend gebeurt. Dit kan je helpen bij het maken van de oefeningen.</p>
+
+
+<!-- ========================================================================== -->
+<hr>
+<h3>Table function</h3>
+
+
+<h4>Probleemstelling</h4>
+
+<p>Laten we een external table function schrijven die een input string neemt die bestaat uit een opeenvolging van
+cijfer-teken paren. Bijvoorbeeld:</p>
+
+<pre>2a3c2d5f</pre>
+
+<p>Er mag per paar maar één cijfer gebruikt worden dat gevolgd wordt door een alfanumeriek teken. De taak van de table function bestaat erin om elk cijfer-teken paar om te zetten naar een <q>woord</q> zodat dit woord zoveel keer datzelfde teken bevat als het cijfer aangeeft. De vorige input string wordt dan de volgende sequentie van woorden:</p>
+
+<pre>
+aa
+ccc
+dd
+fffff
+</pre>
+
+<p>
+Het is de bedoeling dat dit resultaat wordt teruggeven als een tabel met twee kolommen. De eerste kolom is het nummer van  het woord en de tweede kolom het woord zelf. Dus in tabel-vorm ziet het vorige resultaat er als volgt uit:
+</p>
+
+<table width="20%" align="center" border="1">
+<tr><td>1</td><td>aa</td></tr>
+<tr><td>2</td><td>ccc</td></tr>
+<tr><td>3</td><td>dd</td></tr>
+<tr><td>4</td><td>fffff</td></tr>
+</table>
+
+<h4>Processing model</h4>
+
+<p>We moeten bij de implementatie van de table function het gepaste processing model navolgen (zoals geïntroduceerd <a href="extfun_intro.html">hier</a>). In de oefeningen gebeurt meestal geen allocatie van <q>dure</q> resources en is het gebruik van OPEN en CLOSE voldoende (FIRST en FINAL zijn niet nodig). Wel belangrijk is dat we bij een bepaalde FETCH call ooit de <code>SQLSTATE</code> waarde <q>02000</q> teruggeven om aan te geven dat de tabel klaar is.
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0009298.html" >
+table function processing model</a><br>
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/r0008987.html" >
+<q>02000</q> teruggeven
+</a>
+</p>
+
+<p>Om de verschillende protocol-fasen te onderscheiden gaan we ergens de volgende switch moeten onderbrengen:</p>
+
+<pre>
+        switch (getCallType()) {
+            case UDF.SQLUDF_TF_FIRST:
+                
+                break;
+            case UDF.SQLUDF_TF_OPEN:
+                
+                break;
+            case UDF.SQLUDF_TF_FETCH:
+					                 
+                break;
+            case UDF.SQLUDF_TF_CLOSE:
+                
+                break;
+            case UDF.SQLUDF_TF_FINAL:
+
+                break;
+        }
+</pre>
+
+<h4>Scratchpad</h4>
+
+<p>Op deze <a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0003369.html" >link</a> staat beschreven dat als we een <code>scratchpad</code> aanvragen voor onze external function, dat dan slechts één Java object wordt aangemaakt per referentie van onze functie in een <code>SQL</code> statement. Dat is zeer handig omdat we dan ook instance member variabelen kunnen bijhouden naast de gegevens in de <code>scratchpad</code>. In de voorbeeld-code die je hieronder kan downloaden slaan we ter illustratie een deel van de gegevens op in de scratchpad en een ander deel houden we bij in een member variabele. Je zal er typisch voor moeten zorgen dat je het geheugengebruik van de scratchpad kan voorspellen. Het ideale scenario is dat je slechts een constante hoeveelheid bytes van de scratchpad gebruikt, onafhankelijk van de input. 
+</p>
+
+<h4>Declaratie</h4>
+
+<p>We moeten ook de declaratie doen van deze table function in DB2.</p>
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.sql.ref.doc/doc/r0004462.html" >
+create table function syntax
+</a>
+</p>
+
+<h4>Feedback naar DB2</h4>
+
+<p>Het is mogelijk om in jouw external function een fout te signaleren aan DB2. In de klasse <code>COM.ibm.db2.app.UDF</code> zijn methods aanwezig genaamd <code>setSQLstate</code> en <code>setSQLmessage</code>. Zoals eerder gezien moet je sowieso de method <code>setSQLstate</code> oproepen met de waarde <q>02000</q> om de tabel te beëindigen. Als er een fout optreedt in jouw external function &ndash zoals een Java Exception of door het feit dat de input niet aan een bepaald formaat voldoet &ndash kan je <code>setSQLstate</code> oproepen met letterlijk de waarde <q>38XXX</q>. Je gebruikt dan <code>setSQLmessage</code> om een custom string uit te schrijven die het probleem helpt verklaren aan de gebruiker van de external function.</p>
+
+<p>Informatie over deze code <q>38XXX</q> kan je terugvinden op de volgende link:</p>
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.messages.doc/doc/rdb2stt.html" >
+SQLSTATE waarden
+</a>
+</p>
+
+
+<h4>Implementatie</h4>
+
+<p>De concrete implementatie met de nodige installatie scriptjes kan je <a href="files/table.zip" >hier</a> downloaden. Unzip de files in jouw home directory, vervang de <q>...</q> in het installatie-scriptje door jouw accountnaam en voer uit:</p>
+
+<pre>
+. tableinstall.sh
+. tabletest.sh
+</pre>
+
+<p>Als je het bestand <code>tabletest.sh</code> opent, zie je de volgende SQL uitdrukking:</p>
+
+<pre>db2 "select * from table(strgen('2a3c2d5f'))"</pre>
+
+<p>Het is belangrijk dat je de SQL functie <code>table</code> oproept opdat jouw tabel correct wordt behandeld bij het uitvoeren van een SQL statement.</p>
+
+
+
+
+<!-- ========================================================================================= -->
+<hr>
+<h3>Hoe debuggen?</h3>
+
+<p>Je kan de functionaliteit van jouw external Java functions testen door de implementatie op te roepen vanuit
+een standalone Java programma waar je met een debugger doorheen kan gaan. Zolang je maar de juiste Java library files op het <code>CLASSPATH</code> hebt staan (dat wordt ingesteld door het runnen van het <a href="spooky_setup.html#db2profile">db2profile</a>), kan je jouw code compileren. Je kan ook soms gerust eventjes werken op je eigen computer en met een Java <code>IDE</code> voor de initiële ontwikkeling van jouw external functions. Daartoe kan je dan eerst de nodige Java library files van Spooky downloaden en linken in jouw <code>IDE</code>. De nodige files zijn:</p>
+
+<pre>
+/home/db2istud/sqllib/java/db2java.zip
+/home/db2istud/sqllib/java/db2jcc.jar
+</pre> 
+
+<p>Je kan een zip-file normaal gezien zonder problemen opnemen in je CLASSPATH.</p>
+
+<p>Merk op dat je de calls die DB2 zal gaan maken aan jouw external function zelf kan simuleren vanuit het standalone Java programma. Dit is gedaan in de <a href="files/table.zip">voorbeeld-code</a> van de table function, meer concreet in de klasse <code>TableTester</code>. Daar kan je het principe eens bekijken. Het is echter niet verplicht deze werkwijze te volgen en we vermelden het hier slechts als tip.</p>
+
+<p>Tijdens het runnen van de external function in DB2 kan je <u>geen</u> debug-informatie schrijven naar de terminal. Je kan dat wel doen naar een bestand door bijvoorbeeld een <code>java.io.FileOutputStream
+</code> object aan te maken. Het is hierbij nuttig om zodra je iets wegschrijft de <code>flush</code> methode aan te roepen zodat de output zeker op disk terecht komt. De external functions worden uitgevoerd onder de gebruikersnaam <code>db2fstud</code> waarbij de <q>f</q> staat voor <q>fenced</q> (afgeschermd). De gebruiker <code>db2fstud</code> wordt <em>automatisch</em> ingeschakeld voor dit soort werk door de DB2 instance <code>db2istud</code>. Je mag enkel schrijven naar bestanden of directories waar de gebruiker <code>db2fstud</code> bepaalde rechten op heeft. Op Spooky is er een map <code>/tmp</code> waar elke gebruiker mag schrijven. Je kan hier dus een map maken met jouw accountnaam en in die map files genereren vanuit jouw external function. Je moet er dan wel voor zorgen dat de <code>db2fstud</code> gebruiker de nodige rechten heeft in jouw map. Stel dat jouw map <code>myfolder</code> zal heten, je kan deze aanmaken als volgt.</p>
+
+<pre>mkdir /tmp/myfolder</pre>
+
+<p>Je geeft elke gebruiker (inclusief <code>db2fstud</code>) schrijf- en uitvoer-recht op deze directory door te typen:</p>
+
+<pre>chmod -R go+wx /tmp/myfolder</pre>
+
+<p>De optie <code>-R</code> geeft aan dat we dit recursief willen toepassen op de deelmappen. Dit commando geeft echter niemand anders het leesrecht op jouw directory, zodat enkel jij de inhoud kan bekijken. Als je klaar bent met de oefeningen kan je de hele map terug verwijderen als volgt:</p>
+
+<pre>rm -rf /tmp/myfolder</pre>
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0009198.html" >
+restrictions on external routines</a>
+</p>
+
+</td>
+</tr>
+</table>
+
+
+</body>
+</html>

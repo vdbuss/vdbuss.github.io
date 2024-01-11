@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>JDBC</h1></div>
+
+<table align="center" width="60%">
+<tr>
+<td>
+
+<p>Voordat je begint, zorg dat je de <code>db2profile</code> hebt uitgevoerd, zoals beschreven <a href="spooky_setup.html#db2profile" >hier</a>.</p>
+
+<h3>Inleiding</h3>
+
+<p>JDBC is een application programming interface (API) om vanuit een Java programma commando's te versturen naar een database en resultaten hiervan op te vragen en te overlopen.</p>
+
+<h3>Handleiding</h3>
+
+<p>Het hoofdstuk over JDBC in de DB2 handleiding vind je op de onderstaande links. Je kan kiezen uit twee types van drivers om te gebruiken: type <q>2</q> en type <q>4</q>. De handleiding zegt dat type 2 beter zou zijn als jouw Java programma runt op de server zelf en type 4 als jouw Java programma over het internet heen contact opneemt met de server. Voor de oefeningen is dit onderscheid qua efficiëntie in principe niet zo belangrijk. Zoals opgemerkt <a href="spooky_setup.html#ssh-sftp" >hier</a> raden we aan om de oefeningen te maken op Spooky zelf, zodat je technische aspecten zoals het opzetten van een <a href="ssh_tunnel.html" >ssh tunnel</a> kan vermijden.</p>
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.java.doc/doc/c0052041.html" >
+JDBC main
+</a><br>
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.java.doc/doc/cjvt2vt4.html" >
+JDBC drivers
+</a>
+</p>
+
+<p>
+Als je gewoon op Spooky de oefeningen maakt, dan kan je kiezen uit de volgende twee <code>url</code>'s bij het connecteren:
+</p>
+
+<ul>
+   <li>"jdbc:db2://spooky.uhasselt.be:50002/gdbt" (voor type 4)</li>
+   <li>"jdbc:db2:gdbt" (voor type 2; dit geeft geen problemen omdat de naam <q>gdbt</q> op Spooky gekend is)</li>
+</ul>
+
+<p>Het is eigenlijk het handigste om de url <q>jdbc:db2:gdbt</q> te gebruiken omdat je dan bij het connecteren geen paswoord moet ingeven. Dit werkt alvast zeker als je het JDBC programma runt op de Spooky server zelf. Veronderstel een eenvoudige tabel <a href="files/person.db2" ><code>person</code></a>. Deze JDBC <a href="files/JdbcTest.java">voorbeeld-code</a> haalt resultaten op uit deze tabel zonder dat er een paswoord moet worden ingegeven.</p>
+
+<p>Belangrijke aandachtspunten in de handleiding zijn:</p>
+
+<ul>
+   <li>Het gebruik van de <code>DriverManager</code> om een <code>Connection</code> object te bekomen.</li>
+   <li>Het gebruik van dit <code>Connection</code> object om <code>SQL</code> statements uit te voeren en mogelijke <code>ResultSet</code>-objecten als output te ontvangen (en te overlopen).</li>
+</ul>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+Problem 7.4.12 boek Papadimitriou
+
+(a) deterministic time. Phi(M,x) = aantal stappen dat M doet op input x
+als M(x) stopt.
+
+Axioma 1 OK
+
+Axioma 2: input: M,x,k
+
+methode: simuleer M(x). als stopt < k stappen: reject.  als stopt op k
+stappen: accept. als > k stappen: breek af en reject
+
+(a2) niet-deterministic time.  simuleer alle mogelijke runs op
+breath-first manier.
+
+(a3) deterministic space. Phi(M,x) = space gebruikt door M op input x
+als M(x) stopt.
+
+Axioma 2: input: M,x,k
+
+methode: simuleer M(x) binnen afgebakende space van k groot.  bij
+overschrijding: breek af en reject.  bij stoppen en niet alle space
+gebruikt: reject.  bij stoppen en wel alle space gebruikt: accept.
+indien oneindig loopt binnen de afgebakende space:  reject.  dit
+laatste kan gedetecteerd worden door het aantal stappen te tellen en te
+stoppen als we > c^k.
+
+(b) Phi(M,x) = inkt gebruikt door M op input x als M(x) stopt.
+
+Axioma 2: input: M,x,k
+
+methode: simuleer M(x) en verhoog een teller voor elk inktgebruik.  bij
+teller>k: breek af en reject.  bij stoppen met teller<k: reject.  bij
+stoppen met teller=k: accept. indien oneindig loopt zonder nog inkt te
+gebruiken: reject.  dit laatste kan gedetecteerd worden door telkens
+inkt gebruikt wordt, een gebied af te bakenen dat bestaat uit de space
+tot nu toe gebruikt, plus nog Q extra blanco's langs rechts (Q is
+aantal toestanden).  zonder inkt te gebruiken kunnen we binnen dit
+gebied slechts Q(s+Q) verschillende configuraties hebben: als we meer
+stappen doen binnen dit gebied breek af.  als we buiten dit gebied gaan
+zitten we vast in een baan naar outer space en kunnen we dus ook
+afbreken.
+
+(c) Phi(M,x) = aantal reversals gedaan door M op input x als M(x)
+stopt.
+
+Axioma 2: input: M,x,k
+
+methode: simuleer M(x) en verhoog een teller voor elke reversal.  bij
+teller>k: breek af en reject.  bij stoppen met teller<k: reject.  bij
+stoppen met teller=k: accept. indien oneindig loopt zonder te reversen
+(dit moet dus naar rechts zijn): reject.  dit laatste kan gedetecteerd
+worden door telkens naar rechts gereversed wordt, een gebied af te
+bakenen dat bestaat uit de space tot nu toe gebruikt, plus nog Q extra
+blanco's langs rechts (Q is aantal toestanden).  als we nu rechts
+blijven gaan en dat gebied verlaten, zitten we in een oneindige loop
+naar rechts en kunnen we afbreken.
+
+(d) Phi(M,x) = aantal carbons gedaan door M op input x als M(x) stopt.
+
+Stel dat we een algoritme hebben voor Axioma 2.  Dan kunnen we het
+halting probleem oplossen als volgt.  Gegeven als input M;x.  We moeten
+beslissen of M stopt op input x.  Eerst passen we het programma van M
+aan door voor elke letter a een extra letter a' toe te voegen die zich
+qua inputsymbool gedraagt net zoals a.  qua outputsymbool gaan we
+echter het programma aanpassen zodat als we een a willen schrijven op
+een bestaande a, we dan in de plaats een a' gaan schrijven.  en als we
+een a' willen schrijven op een bestaande a' dan schrijven we in de
+plaats een gewone a.  deze herprogrammering van M kan automatisch
+gebeuren: noem de nieuwe TM M'.
+
+Merk op dat M' nooit carbons doet!  We hebben dus dat Phi(M,x) = 0
+als en slechts als M(x) stopt.

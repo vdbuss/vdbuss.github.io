@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>Spooky en DB2</h1></div>
+
+<table width="60%" align="center">
+<tr>
+<td>
+
+<h3>Inleiding</h3>
+
+<p>De oefeningen van het vak kunnen gemaakt worden op een server binnen het UHasselt netwerk. Deze server heet <q>Spooky</q> en deze draait momenteel een Linux variant als operating system. Als student van dit vak krijg je een account op deze server. Hieraan wordt altijd een persoonlijke map gekoppeld &ndash jouw <q>home directory</q> &ndash en dat laat je toe om lokaal bestanden te beheren en kleine programma's uit te voeren die nodig zijn voor het maken van de oefeningen. De naam van jouw persoonlijke map is de naam van jouw account. Op Linux (en Unix systemen in het algemeen) begint de directory structuur altijd met de root directory <q>/</q>. Stel dat jouw account op Spooky de naam <q>joe</q> draagt, dan zal het pad naar jouw home directory zijn als volgt: <code>/home/joe</code>. Je mag in deze home directory nieuwe submappen aanmaken om je files in onder te brengen.<br> 
+Om enkele basistechnieken van het werken onder een Unix systeem op te frissen kan je <a href="unix_primer.html" >deze webpage</a> eens bekijken.</p>
+
+<h3>DB2 instance, poort</h3>
+
+<p>
+Op de Spooky server werken we met de DB2 database instance <q><code>db2istud</code></q> en daarin meer concreet de database <q><code>gdbt</code></q> (Geavanceerde DataBase Technologie). De DB2 database instance <code>db2istud</code> wordt op de server gerepresenteerd als een gebruiker met een eigen account. De home directory van deze gebruiker is <code>/home/db2istud</code>. Een DB2 database instance is eigenlijk een verzameling databases, maar dat hoef je niet te onthouden. In sommige oefeningen ga je wel een <q>poort</q> moeten opgeven waarop de <code>db2istud</code> instance commando's ontvangt. In dat geval moet je concreet de waarde <q>50002</q> opgeven. Dit ga je onder andere in de oefeningen over <a href="jdbc.html" >JDBC</a> en <a href="sqlj.html">SQLJ</a> nodig hebben.
+</p>
+
+<a name="ssh-sftp"><h3>SSH, SCP, SFTP, Werkstijl</h3></a>
+
+<p>In dit vak zijn <code>ssh</code> toegang en <code>scp</code> (of <code>sftp</code>) toegang nuttig.
+Via het <code>ssh</code> protocol kan je inloggen op Spooky en krijg je een tekstvenster om commando's uit te voeren 
+zoals het compileren en uitvoeren van code. Men noemt dit tekstvenster ook wel de <q>login shell</q> of <q>commandline prompt</q>. Als je wil uitloggen typ je daarin bijvoorbeeld het commando <q><code>exit</code></q>.<br>
+Via het <code>scp</code> protocol kan je bestanden van jouw eigen computer uploaden naar Spooky of downloaden van Spooky. Op die manier kan je op jouw eigen computer aan de oefeningen werken met jouw favoriete tekst-editor. Soms kan je voor een Java oefening al een deel van de code debuggen op jouw eigen computer alvorens de code te uploaden en te hercompileren op Spooky.
+</p>
+
+<p>
+Voor Windows is <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">Putty</a> 
+een goede ssh client en 
+<a href="http://winscp.net/eng/docs/lang:nl">WinSCP</a> een goede scp (en sftp) client. We geven <a href="putty.html">hier</a> een kleine tutorial om via de Putty client te werken. Met WinSCP kan je bestanden via een drag-en-drop interface uitwisselen met de server en dit ondersteunt een vlotte werkstijl voor het maken van de oefeningen. <br>
+Onder unix systemen zijn er meestal standaard voorzieningen voor de bovengenoemde functionaliteiten, zoals het
+<code>ssh</code> commando, het <code>scp</code> commando en het <code>sftp</code> commando. Stel dat jouw account <q>joe</q> is, dan kan je inloggen op Spooky als volgt:</p>
+
+<pre>ssh joe@spooky.uhasselt.be</pre>
+
+<p>Voor het gedetailleerde gebruik van alle clients en unix commando's verwijzen we naar de documentatie van die tools. Het is voor dit vak echter niet nodig allerlei geavanceerde opties te gebruiken.</p>
+
+
+<p>
+Het is voor alle oefeningen het eenvoudigste om zoveel mogelijk code op  Spooky zelf te compileren en uit te voeren. De reden dat we dit opmerken is omdat het ook mogelijk is voor sommige oefeningen (waaronder <a href="jdbc.html">JDBC</a>) om een programma te runnen op jouw  eigen computer dat over het internet commando's verstuurt naar de DB2 instance <code>db2istud</code>. We beschouwen dit als meer geavanceerd en het vereist het opzetten van een <a href="ssh_tunnel.html" >ssh tunnel</a>. 
+</p>
+
+<h3>Samples</h3>
+
+<p>
+In de DB2 manuals &ndash waarnaar verwijzingen zijn opgenomen op deze website &ndash spreekt men soms van code-voorbeelden (<q>samples</q>). Je kan deze indien gewenst terugvinden op Spooky in de directory <code>/home/db2istud/sqllib/samples</code>. 
+</p>
+
+
+<a name="db2profile"><h3>DB2 profile, PATH en CLASSPATH</h3></a>
+
+<p>
+Om te kunnen werken met de <code>db2istud</code> instance moet je een zogenaamd <q>profile</q> uitvoeren
+dat allerlei variabelen in de login-shell instelt. Vanaf dan kan je de db2 command line processor bijvoorbeeld
+oproepen zonder dat je het pad naar die tool expliciet moet intypen. Dat komt omdat de profile de <code>PATH</code> variabele instelt. Je kan de inhoud van deze variabele opvragen als volgt:</p>
+
+<pre>echo $PATH</pre>
+
+<p>Ook heel belangrijk is dat dit profile het Java <code>CLASSPATH</code> aanvult met een aantal Java libraries die je nodig hebt voor de Java oefeningen. Het <code>CLASSPATH</code> is eigenlijk gewoon een lijst van directories, zip- of jar-files. Je kan de inhoud opvragen als volgt:</p>
+
+<pre>echo $CLASSPATH</pre>
+
+<p>Om nu het eerder genoemde DB2 profile uit te voeren in de huidige shell typ je het volgende:</p>
+
+<p align="center">
+<code>. /home/db2istud/sqllib/db2profile</code>
+</p>
+
+<p>
+De <q>.</q> zorgt er concreet voor dat het profile wordt uitgevoerd in de huidige shell. Om te vermijden dat je bij elke Spooky sessie opnieuw dit profile moet uitvoeren kan je een aanpassing maken in een configuratie file van je login shell.
+Je maakt concreet de aanpassing in de file <code>.bash_profile</code> die zit in jouw home directory. Telkens als je inlogt op Spooky wordt het scriptje in <code>.bash_profile</code> uitgevoerd. 
+We beschrijven nu hoe je de gewenste aanpassing aan deze configuratie-file kan maken. Als je bent ingelogd via een shell zit je normaal gezien meteen in de home directory. Zo niet, dan typ je eerst <code>cd</code>. 
+
+<!-- Hierbij stelt het symbool <q>~</q> voor elke gebruiker altijd het pad naar zijn home directory voor. -->
+Je kan de configuratie file bewerken door te typen:
+</p>
+
+<p align="center"><code>vi .bash_profile</code></p>
+
+<p>
+Het programma <code>vi</code>  is een command line text editor. Je ziet nu de inhoud van  
+<code>.bash_profile</code> op het scherm. Gebruik de pijltjes toetsen om helemaal naar onderen te navigeren.
+Druk nu op de <code>INSERT</code> toets van je toetsenbord om de tekst te kunnen uitbreiden
+en typ ergens op een lege lijn het volgende:
+</p>
+
+<p align="center">
+<code>
+. /home/db2istud/sqllib/db2profile
+</code>
+</p>
+
+<p>
+Sluit nu de <code>vi</code> editor af door de volgende sequentie uit te voeren
+<ol>
+<li>druk toets <code>ESCAPE</code></li>
+<li>druk toets <code>:</code>
+<li>Typ <q>wq</q> (dit slaat het bestand op en sluit de editor af)
+<li>druk toets <code>ENTER</code></li>
+</ol> 
+</p>
+
+<p>Om de wijzigingen door te voeren (dus de db2profile uitvoeren) zonder opnieuw in te loggen typ je het volgende:</p>
+
+<p align="center"><code>. .bash_profile</code></p>
+
+<p>Om te controleren of je nu toegang hebt tot de DB2 tools en ook de <code>gdbt</code> database typ je:</p>
+
+<p align="center">
+<code>db2 "connect to gdbt"</code>
+</p>
+
+<p>Als alles goed is krijg je iets te zien in de volgende stijl:</p>
+
+<p align="center">
+	<code>
+   Database Connection Information
+
+ Database server        = DB2/LINUXX8664 9.5.4
+ SQL authorization ID   = ....
+ Local database alias   = GDBT
+ </code>
+ </p>
+
+</code>
+
+</td>
+
+</tr>
+</table>
+
+</body>
+</html>

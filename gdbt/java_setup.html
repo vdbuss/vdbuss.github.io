@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>Java SDK</h1></div>
+
+<table width="60%" align="center">
+<tr><td>
+
+<p>
+Voor het compileren van Java code kunnen we gebruik maken van de Java SDK die bij DB2 wordt geleverd. 
+
+Om de DB2 Java SDK te gebruiken kan je deze compiler tools opnemen in de PATH variabele op je Spooky account. De PATH variabele is gewoon een lijst van mappen waarin het systeem programma's zoekt die jij wil uitvoeren. We zullen nu het bestand <q>.bash_profile</q> aanpassen. Dit is gelijkaardig aan de werkwijze om de <a href="spooky_setup.html#db2profile">DB2 tools</a> beschikbaar te maken. Typ het volgende in jouw home directory om de file <code>.bash_profile</code> te bewerken met het programma <code>vi</code>:
+</p>
+
+<p align="center">
+<code>vi .bash_profile</code>
+</p>
+
+<p>Nagiveer met de pijltjes toetsen naar onderaan de file, druk <code>INSERT</code> en typ het volgende bij:</p>
+
+<p align="left">
+<code>PATH=/home/db2istud/sqllib/java/jdk64/bin:$PATH</code><br>
+<code>export PATH</code>
+</p>
+
+<p>
+Sluit de editor af zoals aangegeven <a href="spooky_setup.html#db2profile">hier</a>. De reden waarom we de <q><code>$PATH</code></q> achteraan schrijven is opdat het systeem voor jou de programma's met bijvoorbeeld de namen <code>java</code> en <code>javac</code> het eerst moet gaan zoeken in de map <code>/home/db2istud/sqllib/java/jdk64/bin</code>. Als je dus in jouw commandline prompt het commando <q>javac</q> opgeeft, zal eerst gebruik worden gemaakt van het programma met deze naam dat zich bevindt in de DB2 Java SDK. De reden waarom dit zo wordt gedaan is omdat er mogelijk meerdere programma's geïnstalleerd zijn op Spooky met de naam <q>javac</q> die we niet zouden willen gebruiken. 
+</p>
+
+
+
+</td></tr>
+</table>
+
+</body>
+</html>

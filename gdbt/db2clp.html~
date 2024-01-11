@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>DB2 command line processor</h1></div>
+
+<table align="center" width="60%">
+<tr>
+<td>
+
+<h3>Inleiding</h3>
+
+<p>Een onmisbare tool om met DB2 te werken is de DB2 commmandline processor. Deze tool &ndash met de naam <q>db2</q>  &ndash laat je toe om SQL statements uit te voeren en je kan hem oproepen zoals je andere programma's via de commandline oproept. Om deze tool te kunnen gebruiken moet je de DB2 profile uitvoeren, zoals beschreven <a href="spooky_setup.html" >hier</a>. We geven hieronder enkele eenvoudige voorbeeldjes om de werkwijze op te frissen die je mogelijk in het vak <q>Inleiding tot databases</q> hebt gezien. Op de volgende links vind je de officiële documentatie.</p>
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.admin.cmd.doc/doc/r0010409.html" >db2 command line processor invocation</a><br>
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.admin.cmd.doc/doc/r0010410.html" >command line processor options</a>
+</p>
+
+<h3>SQL statements uitvoeren</h3>
+
+<p>Om met de database <code>gdbt</code> op Spooky te connecteren voeren we het SQL <q>connect</q> statement uit via de DB2 commandline processor:</p>
+
+<pre>db2 "connect to gdbt"</pre>
+
+<p>Om een tabel genaamd <q>person</q> te creëren met een kolommen <q>id</q> (integer) en <q>name</q> (string van 200 tekens) doen we:</p>
+
+<pre>db2 "create table person(id int, name varchar(200))"</pre>
+
+<p>We laden enkele voorbeeldwaarden in deze tabel:</p>
+
+<pre>db2 "insert into person values (1, 'person1'),(2, 'person2')"</pre>
+
+<p>We bekijken het resultaat:</p>
+
+<pre>db2 "select * from person"</pre>
+
+<p>Vervolgens, om deze tabel terug te verwijderen doen we:</p>
+
+<pre>db2 "drop table person"</pre>
+
+<h3>Werken met files</h3>
+
+<p>In de oefeningen zal je vaak SQL statements schrijven in files en deze moeten doorgeven aan DB2. Stel dat we een file <a href="files/person.db2">person.db2</a> hebben waarin een aantal SQL statements staan neergeschreven, gescheiden met het teken <q>;</q>. Deze file noemen we een <q>DB2 script</q>. Je kan dit script uitvoeren als volgt:</p>
+
+<pre>db2 -tvf person.db2</pre>
+
+<p>Hierbij geven we drie opties mee:</p>
+
+<ul>
+   <li><strong>t</strong>: gebruik het teken <q>;</q> om te statements van elkaar te scheiden bij het lezen van de input</li>
+   <li>v: schrijf de gelezen statements naar de standaard output bij het uitvoeren</li>
+   <li>f: lees de input vanuit een bestand</li>
+</ul>
+
+<p>Bekijk zeker de link bovenaan deze pagina eens omtrent andere mogelijke opties die je kan meegeven. Je zal bij de oefeningen omtrent <a href="psm.html">SQL routines</a> de optie <q>td</q> moeten gebruiken. Daarmee kan je een <em>ander teken</em> dan <q>;</q> opgeven om SQL statements van elkaar te scheiden. Dat is nodig omdat je in de code van een SQL procedure bijvoorbeeld reeds het symbool <q>;</q> moet gebruiken om de verschillende regels van één procedure van elkaar te scheiden. Het symbool <q>;</q> is dan niet meer beschikbaar om verschillende procedures (die uit meerdere regels bestaan) te kunnen onderscheiden. Je kan dan de procedures scheiden met een ander symbool, bijvoorbeeld <q>@</q>. Stel dat je een aantal procedures hebt geïmplementeerd in een DB2 scriptje met de naam <code>proc.db2</code> en dat je daarin de verschillende procedures van elkaar hebt gescheiden met een <q>@</q> symbool. Dan kan je deze procedures installeren in DB2 als volgt:</p>
+
+<pre>db2 -td@ -f proc.db2</pre>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>

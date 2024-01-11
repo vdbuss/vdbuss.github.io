@@ -1,0 +1,74 @@
+<title>Q-COMM Workshop</title>
+<img src="ZT__exterieur_coverpage.jpg" align=right>
+<h1>Q-COMM Workshop</h1>
+<h2>"Querying by Communication"</h2>
+<h2>Antwerp, 19-20 December 2002</h2>
+<h2>at the
+<a href="http://www.zuiderterras.be">Zuiderterras</a></h2>
+The Q-COMM workshop will be an informal research workshop on the
+general theme of
+<em>communication aspects of database querying</em>.  The workshop concludes a
+bilateral research project between Flanders and Poland on that theme.
+The program will consist of presentations of results of the project, invited
+talks, and contributed talks.
+<p>
+Typical topics that will be discussed are:
+<ul>
+<li>
+database interrogation (computation by sequences of queries)
+<li>
+reflective relational machines as a formal model for client-server querying
+<li>
+formal models of Web querying and browsing
+<li>
+distributed and peer-to-peer databases
+<li>
+communication complexity in databases
+</ul>
+<h3>Call for participation</h3>
+If you are interested in contributing a talk at the workshop,
+or just attending, please contact
+<a href="http://alpha.luc.ac.be/~lucp1080">Jan Van den Bussche</a>.
+Financial support may be available.
+<h3>Invited speaker</h3>
+<strong><a href="http://www.math.tau.ac.il/~milo">Tova Milo</a></strong> will
+talk about <em>Active XML: A data centric perspective of Web services</em>.
+<h3>Research project results</h3>
+The workshop concludes
+a bilateral research project
+between Flanders and Poland on the theme of Querying by Communication.
+The universities and people involved in this project are the following:
+<p>
+<table>
+<tr>
+<td><em>University of Limburg</em>
+<td><em>University of Antwerp</em>
+<td><em>Warsaw University</em>
+<tr>
+<td><a href="http://alpha.luc.ac.be/~lucp1080">Jan Van den Bussche</a><br>
+<a href="http://alpha.luc.ac.be/~lucp1360/">Marc Spielmann</a>
+<td><a href="http://win-www.uia.ac.be/u/pareda/">Jan Paredaens</a><br>
+<a href="http://wwwis.win.tue.nl/~hidders/">Jan Hidders</a>
+<td><a href="http://www.mimuw.edu.pl/~jty/">Jerzy Tyszkiewicz</a><br>
+<a href="http://www.ida.liu.se/~andsz/">Andrzej Szalas</a><br>
+Michal Bielecki
+</table>
+<p>
+The results of the project include the following:
+<ul>
+<li> "Cursor-based access to databases" (J. Tyszkiewicz, J. Van den Bussche).
+In preparation.
+<li> "<a href="http://alpha.luc.ac.be/research/groups/theocomp/spielmann/WebAuto/index.html">A
+peer-to-peer system for Web querying</a>" (M. Spielmann, J. Van den
+Bussche).
+
+<li> <a href="counts.ps.gz">"Database interrogation using conjunctive
+queries"</a> (M. Bielecki, J. Van den Bussche).
+
+<li> <a href="icalp-fin.ps.gz">"Navigating with a browser"</a> (M. Bielecki,
+J. Hidders, J. Paredaens, J. Tyszkiewicz, J. Van den Bussche).
+
+<li> <a href="dc.pdf">"Distributed computation of Web queries using
+automata"</a> (M. Spielmann, J. Tyszkiewicz, J. Van den Bussche).
+
+</ul>

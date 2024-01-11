@@ -1,0 +1,599 @@
+<html>
+<head>
+<TITLE>Publications by Jan Van den Bussche</TITLE>
+</head>
+
+<body>
+<H1>Publications by <a href="index.html">
+Jan Van den Bussche</a> </H1>
+
+<UL>
+<li> <a href="#misc"> Miscellaneous (but interesting!) topics</a>
+  <li><a href="#dataflow">Dataflows and Provenance</a>
+<li> <a href="#document">XML and Search</a>
+<li> <a href="#semi"> Semijoin algebra</a>
+<li> <a href="#dmql"> Data mining</a>
+<li> <a href="#reflect"> Programming aspects of query languages</a>
+<LI> <A HREF="#spatial"> Spatial databases, constraint query languages</A>
+<li> <a href="#nested"> Nested relations</a>
+<li> <a href="#web">Communication aspects of database and Web querying</a>
+<li> <a href="#temporal"> Temporal query languages</a>
+<LI> <A HREF="#ocsd"> Theory of object creation, semi-determinism,
+computationally complete query languages</a>
+<li> <a href="#oograph"> Object-oriented/graph-oriented query languages</a>
+<!-- <li> <a href="#prep"> Papers in preparation</a> -->
+</UL>
+
+<HR>
+
+<a NAME="dataflow"></a>
+<h2>Dataflows and Provenance</h2>
+
+<ol>
+  <li><a href="color.pdf">"Relational completeness of query
+    languages for annotated databases"</a> (F. Geerts, J. Van den
+  Bussche). <em>DBPL 2007</em>.
+  <li><a href="ipaw.pdf">"Mapping the NRC dataflow model to the
+    open provenance model"</a>
+(N.&nbsp;Kwasnikowska and J. Van den
+  Bussche). Proceedings IPAW 2008, Lectures Notes in Computer
+  Science, vol 5272, p 3-16, 2008.
+  <li><a href="NRCrepository_DILS2007.pdf">"A formal model of
+    dataflow repositories"</a> (J. Hidders, N. Kwasnikowska, J.
+  Sroka, J. Tyszkiewicz, J. Van den Bussche). Proceedings DILS,
+  Lecture Notes in Bioinformatics vol 4544, pages 105-121, 2007.
+
+ <li><a href="petri_is.pdf">"DFL: A dataflow languages based on
+   Petri nets and nested relational calculus"</a>
+(J. Hidders, N. Kwasnikowska, J. Sroka, J. Tyszkiewicz, J. Van
+den Bussche).  Information Systems 33 (2008) 261-284.
+A preliminary version appeared as "Petri
+net + nested relational calculus = dataflow" in the proceedings
+of CoopIS 2005.
+</ol>
+
+<a NAME="spatial"></a>
+
+<h2>Spatial databases, constraint query languages </h2>
+
+<ol>
+<li><a href="tc.pdf">"Linearization and completeness results for terminating transitive closure queries on spatial databases"</a> (F. Geerts, B. Kuijpers, J. Van den Bussche). SIAM  Journal on Computing, vol 35, no 6, pp 1386-1439, 2006.
+<li> <a href="bull.pdf">"First-order topological properties"</a>. 
+<em>Bulletin of the EATCS</em>, vol 87, pp 155-164, 2005. (Logic in Computer
+Science Column)
+<li> <a href="topo_jacm.pdf">"A
+characterization of first-order topological properties of planar spatial
+data"</a> (M. Benedikt, B. Kuijpers, C. Loeding, J. Van den Bussche, T. Wilke).
+<em>Journal of the ACM,</em> vol 53, no 2, p 273-305, 2006. Extended version of a paper presented at PODS 2004.
+
+<li> <a href="http://arxiv.org/abs/cs.LO/0308001">"Two- versus
+three-dimensional connectivity testing of first-order queries to
+semi-algebraic sets"</a>
+(F. Geerts, L. Smits, J.  Van den Bussche). <em>Acta Informatica</em>,
+vol 42, no 1, pp 43-56, 2005.
+<li> <a href="column.ps.gz">"Constraint databases: A tutorial
+introduction"</a> (J. Van den Bussche).
+<em>SIGMOD Record</em>, vol 29, no 3, pp 44-51,
+2000 (Database Principles column).
+<li> <a href="http://arxiv.org/abs/cs.DS/0608091">"On-line topological simplification of
+weighted graphs"</a> (F. Geerts, P. Revesz, J. Van den Bussche).
+Full version of the paper "On-Line Maintenance of Simplified Weighted Graphs for Efficient Distance Queries" presented at ACM GIS 2006.
+<li> <a href="cdb.ps.gz">"Constraint databases, queries, and query
+languages"</a> (J. Van den Bussche).  Close-to-final version of the
+first chapter of <em>Constraint Databases</em>
+(G. Kuper, L. Libkin, J. Paredaens, editors), Springer, 2000.
+<li> <a href="fotopo.ps.gz"> "On capturing first-order topological properties
+languages"</a> (J. Van den Bussche).  Close-to-final version of the
+first chapter of <em>Constraint Databases</em>
+(G. Kuper, L. Libkin, J. Paredaens, editors), Springer, 2000.
+<li> <a href="fotopo.ps.gz"> "On capturing first-order topological properties
+of planar spatial databases"</a> (B. Kuijpers, J. Van den Bussche). In
+<em>Database Theory, ICDT'99</em> (C. Beeri and P. Buneman, editors),
+<em>Lecture Notes in Computer Science,</em> vol 1540, pages 187--198,
+Springer, 1999.
+
+<li> <a href="canon.ps.gz"> "Topological canonization of planar spatial data
+and its incremental maintenance"</a> (F. Geerts, B. Kuijpers, J. Van den
+Bussche). In <em>Fundamentals of Information Systems</em>
+(T. Polle, T. Ripke, K.-D. Schewe, editors),
+Kluwer International Series in Engineering and Computer
+Science, vol 496, pages 55--68, 1999.
+<li> <a href="compl_geo_full.ps.gz"> "Complete geometrical query
+languages"</a>
+(M. Gyssens, J. Van den Bussche, D. Van Gucht).
+<em>Journal of Computer and System Sciences</em>, vol 58, no 3, pages
+483-511, 1999. (A preliminary version was presented at <em>PODS'97.</em>)
+
+<li> <a href="topol_eq.ps.gz"> "On topological elementary equivalence of
+closed semi-algebraic sets in the real plane"</a>
+(B. Kuijpers, J. Paredaens, J. Van den Bussche).  <em>Journal of
+Symbolic Logic</em>, vol 65, no 4, pages 1530-1555, 2000.
+(A preliminary version was presented at <em>ICDT'97</em>.)
+
+<li> <a href="term_spalog.ps.gz"> "Termination properties of spatial
+Datalog programs"</a> (B. Kuijpers, J. Paredaens, M. Smits, J. Van den
+Bussche). <em> Logic in Databases</em>
+(D. Pedreschi, C. Zaniolo, editors), <em> Lecture
+Notes in Computer Science,</em> vol 1154, pages 101-116. Springer, 1997.
+(One direction of the theorem, on testing topological connectivity using
+the Datalog program of figure 4, is false.
+Border-visibility is not necessary, only
+sufficient, for soundness and termination of this program.  One can
+also relax the definition of border-visibility and still get a sufficient
+condition.  Details can be found in <a
+href="http://alpha.uhasselt.be/~lucp1265/">Bart Kuijpers</a>'s PhD thesis.)
+
+<li> <a href="databases_embedded.ps.gz"> "First-order queries on databases
+embedded in an infinite structure"</a>
+(M. Otto, J. Van den Bussche). <em> Information
+Processing Letters,</em> vol 60, pages 37-41, 1996.
+
+<li> <a href="queries_reals.ps.gz"> "First-order queries on finite structures
+over the reals"</a> (J. Paredaens, J. Van den Bussche, D. Van Gucht).
+<em> SIAM Journal on Computing,</em> vol 27, no 6, pages 1747-1763, 1998.
+(A preliminary version was presented at <em> LICS'95.</em>)
+
+<li> <a href="lossless_topol.ps.gz"> "Lossless representation of topological
+spatial data"</a> (B. Kuijpers, J. Paredaens, J. Van den Bussche). <em>
+Advances
+in Spatial Databases</em>
+(M.J. Egenhofer, J.R. Herring, editors), <em> Lecture Notes in
+Computer Science,</em> vol 951, pages 1-13. Springer, 1995.
+
+<li> <a href="spatial_queries.ps.gz"> "Towards a theory of spatial database
+queries"</a> (J. Paredaens, J. Van den Bussche, D. Van Gucht). <em>
+Proceedings
+13th ACM Symposium on Principles of Database Systems,</em>
+pages 279-288. ACM
+Press, 1994.
+
+</ol>
+
+<hr>
+
+<a NAME="ocsd"></a>
+
+<h2> Object creation, semi-determinism, computationally complete query
+languages </h2>
+
+<ol>
+
+<li> <a href="compl_object.ps.gz"> "On the completeness of object-creating
+database transformation languages"</a> (J. Van den Bussche, D. Van Gucht, M.
+Andries, M. Gyssens). <em>
+Journal of the ACM,</em> vol 44, no 2, pages 272-319, 1997.
+(A preliminary version was presented at <em> FOCS'92.</em>)
+
+<li> <a href="values.ps.gz"> "The expressive power of complex values in
+object-based data models"</a> (J. Van den Bussche, J. Paredaens).
+<em> Information
+and Computation,</em>
+ vol 120, pages 220-236, 1995. (A preliminary version was
+presented at <em> PODS'91.</em>)
+
+<li> <a href="values_card.ps.gz"> "The expressive power of cardinality-bounded
+set values in object-based data models"</a>
+(J. Van den Bussche, D. Van Gucht). <em>
+Theoretical Computer Science,</em>
+vol 149, no 1, pages 49-66, 1995. (A preliminary
+version was presented at <em> ICDT'92.</em>)
+
+<li> <a href="semidet.ps.gz"> "A semi-deterministic approach to object creation
+and non-determinism in database queries"</a> (J. Van den Bussche, D. Van
+Gucht). <em>
+Journal of Computer and System Sciences,</em> vol 47, no 1, pages 34-47,
+1997. (A preliminary version was presented at <em> PODS'92.</em>)
+
+<li> <a href="semidet_choice.ps.gz"> "Expressiveness of efficient
+semi-deterministic choice constructs"</a> (M. Gyssens, J. Van den Bussche, D.
+Van Gucht). <em> Automata, Languages and Programming - ICALP'94</em>
+(S. Abiteboul, E.
+Shamir, editors), <em> Lecture Notes in Computer Science,</em>
+vol 820, pages 106-117.
+Springer, 1994. (A full version presenting polynomial-time
+semi-deterministic choice constructs that are more general
+than swap-choice, is in preparation.)
+
+<li> <a href="nondet_transfo.ps.gz"> "Non-deterministic aspects of database
+transformations involving object creation"</a>
+(J. Van den Bussche, D. Van Gucht).
+<em> Modeling Database Dynamics</em> (U. Lipeck, B. Thalheim, editors),
+<em> Workshops in Computing,</em> pages 3-16. Springer, 1993.
+
+<li>
+"A computational model for generic graph functions"
+(M. Gemis, J. Paredaens, P. Peelman, J. Van den Bussche). <em> Graph
+Transformations in Computer Science</em>
+(H.J. Schneider, H. Ehrig, editors),
+<em> Lecture Notes in Computer Science,</em>
+ vol 776, pages 170-187. Springer, 1994.
+
+<li> <a href="complex_ggm.ps.gz"> "Expressiveness and complexity of generic
+graph machines"</a> (M. Gemis, J. Paredaens, P. Peelman, J. Van den Bussche).
+<em> Theory of Computing Systems,</em> vol 31, pages 231-249, 1998.
+
+<li> <a href="asmccql.ps.gz"> "Abstract state machines and computationally
+complete query languages"</a> (A. Blass, Y. Gurevich, J. Van den Bussche).
+<em>Information and Computation</em>, vol 174, no 1, p 20-36, 2002.
+An extended abstract
+appears in <em>Abstract State Machines, Theory and Practice</em> (Y.
+Gurevich, P.W. Kutter, M. Odersky, L. Thiele, editors), <em>Lecture Notes in
+Computer Science,</em> vol 1912, pages 22-33. Springer, 2000.
+
+<li> <a href="tsoc.pdf">"Tree-structured object creation in
+  database transformations"</a>. Appeared in the <a
+  href="http://alpha.uhasselt.be/jan.vandenbussche/jp/">Liber
+  Amicorum for Jan Paredaens's 60th Birthday</a>.
+
+</ol>
+
+<hr>
+
+<a name="oograph"></a>
+
+<h2> Object-oriented/graph-oriented query languages </h2>
+
+<ol>
+
+<li> <a href="mv.ps.gz"> "Methods and views"</a> (J. Van den Bussche, E.
+Waller).
+
+<li> <a href="deq.ps.gz"> "Deep equality revisited"</a> (S. Abiteboul, J. Van
+den Bussche). <em>
+Deductive and Object-Oriented Databases</em> (T.W. Ling, A.O.
+Mendelzon, L. Vieille, editors), <em> Lecture Notes in Computer Science,</em>
+vol 1013,
+pages 213-228. Springer, 1995.
+
+<li> <a href="update_method.ps.gz"> "Applying an update method to a set of
+receivers"</a> (M. Andries, L. Cabibbo, J. Paredaens, J. Van den Bussche).
+<em>ACM Transactions on Database Systems</em>, vol 25, no 1, pages 1-40, 2001.
+(A preliminary version was presented at <em>PODS'95</em>.)
+
+<li> <a href="good.ps.gz"> "A graph-oriented object database model"</a> (M.
+Gyssens, J. Paredaens, J. Van den Bussche, D. Van Gucht).
+<em> IEEE Transactions on
+Knowledge and Data Engineering,</em> vol 6, no 4, pages 572-586, 1994.
+
+<li> <a href="video_good.ps.gz">
+"GOOD: A graph-oriented object database system"</a>
+(M. Gemis, J. Paredaens, I.
+Thyssens, J. Van den Bussche). <em> Proceedings ACM SIGMOD'93 International
+Conference,</em> pages 505-510. ACM Press, 1993. (Abstract of a video
+presentation.)
+
+<li> <a href="path_navigation.ps.gz"> "An extension of path expressions to
+simplify navigation in object-oriented queries"</a> (J. Van den Bussche, G.
+Vossen). <em> Deductive and Object-Oriented Databases</em>
+(S. Ceri, K. Tanaka, S. Tsur,
+editors), <em> Lecture Notes in Computer Science,</em>
+ vol 760, pages 267-282. Springer,
+1993.
+
+<li> "Using SQL with object-oriented databases" (J. Van den Bussche, A. Heuer).
+<em> Information Systems,</em> vol 18, no 7, pages 461-487, 1993.
+
+<li> "Concepts for graph-oriented object manipulation"
+(M. Gemis, J. Paredaens,
+I. Thyssens, J. Van den Bussche). <em>
+Advances in Database Technology - EDBT'92</em>
+(A. Pirotte, editor), <em> Lecture Notes in Computer Science,</em>
+vol 580, pages 21-38.
+Springer, 1992.
+
+<li> "An overview of GOOD" (J. Paredaens, J. Van den Bussche, D. Van Gucht, et
+al.) <em> SIGMOD Record,</em> vol 21, no 1, pages 25-31, 1992.
+
+<li> "A graph- and object-oriented counterpart for SQL" (M. Andries, J.
+Paredaens, J. Van den Bussche). <em> Future Database '92</em>
+(Q. Chen, Y. Kambayashi,
+R. Sacks-Davis, editors), <em>
+Advanced Database Research and Development,</em> vol 3,
+pages 276-285. World Scientific, 1992.
+
+</ol>
+
+<hr>
+
+<a name="reflect"></a>
+
+<h2> Programming aspects of query languages</h2>
+
+<ol>
+<li><a href="polynrc.pdf">"Polymorphic type inference for the named nested
+relational calculus"</a> (J. Van den Bussche, S. Vansummeren). To appear in
+<em>ACM Transactions on Computational Logic.</em>
+<li><a href="crash.pdf">"A crash course in database queries"</a>
+(J. Van den Bussche, S. Vansummeren, D. Van Gucht). Proceedings
+26th ACM Symposium on Principles of Database Systems, p 143-154,
+ACM Press, 2007.  (Invited tutorial.)
+<li><a href="wellnrc.pdf">"Well-definedness
+and semantic type-checking for the nested
+relational calculus"</a> (J. Van den Bussche, D. Van Gucht, S. Vansummeren).
+<em>Theoretical Computer Science</em>, vol 371, no 3, p 183-199,
+2007.  Full version of a paper presented at ICDT 2005.
+
+<li><a href="kreta.ps">"Meta-SQL: Towards practical meta-querying"</a> (J. Van
+den Bussche, S. Vansummeren, G. Vossen). System demonstration paper in
+<em>Advances in Database Technology, EDBT 2004</em>, Lecture Notes in Computer
+Science, vol 2992, pages 823-825. Springer, 2004.
+
+<li> <a href="practical_meta.pdf"> "Towards practical
+meta-querying"</a> (J. Van den Bussche, S. Vansummeren, G. Vossen).
+<em>Information Systems</em>, vol 30, no 4, pages 317-332, 2005.
+<li> <a href="http://arxiv.org/abs/cs.LO/0106035">"Polymorphic type
+inference for the relational
+algebra"</a> (J. Van den Bussche, E. Waller). <em>Journal of
+Computer and System Sciences</em>, vol 64, p 694-718, 2002.
+(An extended abstract
+appeared in PODS'99 under the title "Type inference in the polymorphic
+relational algebra".)
+<li> <a href="typed_meta.pdf"> "Typed query languages for databases
+containing queries"</a> (F. Neven, J. Van den Bussche, D. Van Gucht, G.
+Vossen). <em>Information Systems,</em> vol 24, no 7, pages 569-595, 1999.
+(A preliminary version was presented at <em> PODS'98.</em>)
+
+<li> <a href="reflective.pdf"> "Reflective programming in the relational
+algebra"</a> (J. Van den Bussche, D. Van Gucht, G. Vossen). <em> Journal of
+Computer and System Sciences,</em> vol 52, no 3, pages 537-549, 1996.
+(A preliminary version was presented at <em> PODS'93.</em>)
+
+</ol>
+
+<hr>
+
+<a name="temporal"></a>
+
+<h2> Temporal query languages </h2>
+
+<ol>
+
+<li> <a href="connectives_timestamps.ps.gz">
+"Temporal connectives versus explicit timestamps to query temporal
+databases"</a>
+(S. Abiteboul, L. Herr, J. Van den Bussche). <em>Journal of
+Computer and System Sciences</em>, vol 58, no 1, pages 54-68, 1999.
+(Combined full version of <a href="temporal_query.ps.gz"> "Temporal connectives
+versus explicit timestamps in temporal query languages"</a>,
+<em> Recent Advances in
+Temporal Databases</em> (J. Clifford, A. Tuzhilin, editors), <em>
+Workshops in
+Computing,</em>
+ pages 43-57, Springer, 1995, and <a href="temporal_logic.ps.gz">
+"Temporal versus first-order logic to query temporal databases"</a>,
+<em>
+Proceedings 15th ACM Symposium on Principles of Database Systems,</em>
+pages 49-57,
+ACM Press, 1996.)
+
+</ol>
+
+<hr>
+
+<a name="document"></A>
+
+<h2>XML and Search</h2>
+
+<ol>
+
+  <li><a href="search.pdf">"Towards a theory of search
+    queries"</a> (G.H.L. Fletcher, J. Van den Bussche, D. Van
+  Gucht, S. Vansummeren). <em>ICDT 2009</em>.
+
+<li> <a href="http://arxiv.org/abs/cs.PL/0603028">
+"On the tree-transformation power of XSLT"</a>
+(W. Janssen, A. Korlyukov, J. Van den Bussche).
+<em>Acta Informatica</em>, vol 43, no 6, pp 371--393, 2007.
+
+<li> <a href="jacm_ag.ps.gz">
+"Expressiveness of structured document query
+languages based on attribute grammars"</a>
+(F. Neven, J. Van den Bussche). <em>Journal of the ACM</em>, vol 49, no 1, p
+56-100, 2002.  (A preliminary version was presented at <em>PODS'98</em>.)
+
+<li> <a href="http://alpha.uhasselt.be/~fneven/document_dood.ps.gz">
+"On implementing structured document query facilities on top of a DOOD"</a>
+(F. Neven, J. Van den Bussche). <em>Deductive and Object-Oriented
+Databases</em> (F. Bry, R. Ramakrishnan, K. Ramamohanarao, editors),
+<em>Lecture Notes in Computer Science</em>, vol 1341, pages 351-367. Springer,
+1997.
+
+</ol>
+
+<hr>
+
+<a name="dmql"></a>
+
+<h2> Data mining </h2>
+
+<ol>
+  <li><a href="geneclusters.pdf">"Finding clusters of positive and
+    negative coregulated genes in Gene expression data"</a>
+  (K.&nbsp;Koch, S.&nbsp;Sch&ouml;nauer, I.&nbsp;Jansen,
+  J.&nbsp;Van den Bussche, T.&nbsp;Burzykowski). <em>BIBE
+    2007</em>.
+  <li><a href="http://arxiv.org/abs/0709.4655">"Mining for
+trees in a graph is NP-complete"</a>. arXiv:0709.4655.
+<li><a href="hk.pdf">"Mining for tree-query associations in a graph"</a> (E.&nbsp;Hoekx, J.&nbsp;Van den Bussche).  <em>ICDM 2006</em>.
+<li> <a href="tcq.pdf">"Mining tree queries in a graph"</a> (B.&nbsp;Goethals,
+E.&nbsp; Hoekx, J.&nbsp;Van den Bussche).  Presented at <em>KDD 2005</em>.
+<li>
+<a href="kl.pdf">"Learning (k,l)-contextual tree languages for information
+extraction"</a> (S.&nbsp;Raeymaekers, M.&nbsp;Bruynooghe, J.&nbsp;Van den
+Bussche).  Machine Learning, vol 71, p 155--183, 2008.  Full
+version of a paper presented at ECML 2005.
+<li> <a href="ijcai-163.pdf">"Information extraction from Web documents based
+on local unranked tree automaton inference"</a> (R.&nbsp;Kosala,
+H.&nbsp;Blockeel, M.&nbsp;Bruynooghe, J.&nbsp;Van den Bussche).
+Presented at <em>IJCAI 2003</em>.
+
+<li> <a href="gltestable.pdf">"Information extraction from structured documents
+using k-testable tree automata induction"</a> (R. Kosala, 
+H. Blockeel, M. Bruynooghe, J. Van den Bussche).
+<em>Data &amp; Knowledge Engineering,</em> vol 58, p 129-158, 2006.
+Extended version of a
+<a href="ta_paper.ps.gz">paper</a> presented at PKDD 2002.
+
+<li> <a href="http://arxiv.org/abs/cs.DB/0206023">"Relational association
+rules: Getting WARMeR"</a> (B. Goethals, J. Van den Bussche).
+<em>Proceedings
+ESF Exploratory Workshop on Pattern Detection and Discovery</em>, <em>Lecture
+patterns"</a> (F. Geerts, B. Goethals, J. Van den Bussche).
+arXiv:cs.DB/0112007. <em>ACM Transactions on Database
+Systems</em>, 30(2)333-363, 2005. Extended version of a paper in
+<em>Proceedings 2001 IEEE International Conference on Data Mining</em>.
+
+<li> <a href="http://arxiv.org/abs/cs.DB/0112011">"On supporting
+interactive association rule
+mining"</a> (B. Goethals, J. Van den Bussche). Extended version of a paper
+in <em>Data Warehousing and
+Knowledge Discovery</em> (Y. Kambayashi, M.K. Mohania, A. Min Tjoa, editors),
+<em>Lecture Notes in Computer Science</em>, volume 1874, pages 307-316,
+Springer, 2000.
+
+<li> <a href="pripos.ps.gz">"A priori versus a posteriori filtering of
+association rules"</a> (B. Goethals, J. Van den Bussche).  Presented at
+<em>SIGMOD Workshop on Research Issues in Data Mining and Knowledge
+Discovery,</em> 1999.
+
+</ol>
+
+<hr>
+
+<a name="web"></a>
+
+<h2>Communication aspects of database and Web querying</h2>
+
+<ol>
+<li> <a href="counts.ps.gz">"Database interrogation using conjunctive
+queries"</a> (M. Bielecki, J. Van den Bussche).  <em>Database Theory, ICDT
+2003</em>, <em>Lecture Notes in Computer Science</em>, vol 2572, p 259-269,
+2003.
+
+<li> <a href="icalp-fin.ps.gz">"Navigating with a browser"</a> (M. Bielecki,
+J. Hidders, J. Paredaens, J. Tyszkiewicz, J. Van den Bussche). <em>Automata,
+Languages and Programming, ICALP 2002</em>, <em>Lecture Notes in Computer
+Science</em>, vol 2380, p 764-775, 2002.
+
+<li> <a href="dc.pdf">"Distributed computation of Web queries using
+automata"</a> (M. Spielmann, J. Tyszkiewicz, J. Van den Bussche).
+<em>Proceedings 21st ACM Symposium on Principles of Database Systems</em>, p
+97-108, 2002.
+<p>
+Check out the <a
+href="http://alpha.uhasselt.be/research/groups/theocomp/spielmann/WebAuto/index.html">system prototype</a> accompanying the above paper!
+
+</ol>
+
+<hr>
+
+<a name="semi"></a>
+
+<h2>Semijoin algebra</h2>
+
+<ol>
+  <li><a href="projection.pdf">"Repetitions and permutations of
+    columns in the semijoin algebra"</a> (D. Leinders, J. Van den
+  Bussche). <a href="http://dx.doi.org/10.1051/ita:2008023"><em>RAIRO
+      Theoretical Informatics and
+      Applications</em></a>, published online, 5 June 2008.
+  <li><a href="barcelona_full.pdf">"Database query processing using
+    finite cursor machines"</a> (M. Grohe, Y. Gurevich, D.
+  Leinders, N. Schweikardt, J. Tyszkiewicz, J. Van den Bussche).
+  <a href="http://dx.doi.org/10.1007/s00224-008-9137-7"><em>Theory of
+      Computing Systems</em></a>, published online, 16 August
+  2008.  Full version of a paper presented at ICDT 2007.
+<li> <a href="division.pdf">"On the complexity of division and set joins in
+the relational algebra"</a> (D. Leinders, J. Van den Bussche).
+<em>Journal of Computer and System Sciences</em>, vol 73, no 4,
+p 538--549, 2007. Full version of a paper presented at PODS 2005.
+<li> <a href="sagf.pdf">"The semijoin algebra and the guarded fragment"</a>
+(D. Leinders, M. Marx, J. Tyszkiewicz, J. Van den Bussche). Journal of Logic,
+Language and Information, vol 14, pages 331--343, 2005.
+<li> <a href="http://arxiv.org/abs/cs.DB/0308014">"On the expressive power of
+semijoin queries"</a> (D. Leinders, J. Tyszkiewicz, J. Van den Bussche).
+<em>Information Processing Letters</em> 91 (2004) 93-98.
+</ol>
+
+<hr>
+
+<a name="misc"></a>
+
+<h2> Miscellaneous topics </h2>
+
+<ol>
+  <li><a href="streams.pdf">"A theory of stream queries"</a> (Y.
+  Gurevich, D. Leinders, J. Van den Bussche). <em>DBPL 2007</em>.
+<li> <a href="tarski.ps.gz">"Applications of Alfred Tarski's ideas in database
+theory"</a> (J. Van den Bussche). In
+<em>Computer Science Logic</em> (L.
+Fribourg, editor), <em>Lecture Notes in Computer Science</em>, volume 2142,
+pages 20-37, Springer, 2001.
+<li> <a href="rquv_m.ps.gz">"Rewriting
+queries using views over monadic database
+schemas"</a> (J. Van den Bussche). <em>Information Processing Letters,</em>
+vol 79, p 111-114, 2001.
+<li> <a href="forfull.ps.gz"> "Adding for-loops to
+first-order logic"</a> (F. Neven, M. Otto, J. Tyszkiewicz, J. Van den
+Bussche). <em>Information and Computation</em>, vol 168, no 2, p 156-186,
+2001.  (A preliminary version appeared in ICDT'99.)
+
+<li>
+<a href="forall_not.ps.gz">
+"The forall-not degree of a connective-free formula"</a> (J. Van den Bussche).
+<em> Acta Informatica,</em> vol 30, pages 489-502, 1993.
+
+<li> <a href="untyped_typed.ps.gz"> "Converting untyped formulas to typed
+ones"</a> (J. Van den Bussche, L. Cabibbo). <em> Acta Informatica,</em> vol
+35, pages 637-643, 1998.
+
+<li> <a href="poly_ord.ps.gz"> "Polynomially orderable classes of
+structures"</a> (J. Van den Bussche, D. Van Gucht).
+
+</ol>
+
+<hr>
+
+<a name="nested"></a>
+
+<h2> Nested relations </h2>
+
+<ol>
+<li> <a href="http://arxiv.org/abs/cs.LO/0106034">
+"Solving equations in the relational
+algebra"</a> (J. Biskup, J. Paredaens, T. Schwentick, J. Van den Bussche).
+<em>SIAM Journal on Computing,</em> 33(5):1052-1066, 2004.
+
+<li> <a href="ff.ps.gz"> "Simulation of the nested relational algebra by the
+flat relational algebra, with an application to the complexity of evaluating
+powerset algebra expressions"</a> (J. Van den Bussche).
+<em>Theoretical Computer Science,</em> 254(1-2):363-377, 2001.
+
+<li> "Complex object multi-level fixpoint queries"
+(J. Van den Bussche). <em> Annals
+of Mathematics and Artificial Intelligence,</em> vol 7, pages 41-62, 1993. (A
+preliminary version was presented at <em> MFDBS'91</em>.)
+
+<li> <a href="selections.ps.gz"> "Evaluation and optimization of complex object
+selections"</a> (J. Van den Bussche). <em>
+Deductive and Object-Oriented Databases</em>
+(C. Delobel, M. Kifer, Y. Masanuga, editors), <em> Lecture Notes in Computer
+Science,</em> vol 566, pages 21-38. Springer, 1991.
+
+<li> <a href="nsql.ps.gz"> "A formal basis for extending SQL to
+object-oriented databases"</a> (J. Van den Bussche). <em>
+Bulletin of the EATCS,</em>
+vol 40, pages 207-216, 1990.
+
+</ol>
+
+<hr>
+
+Last updated:
+Wed Apr  1 16:38:43 CEST 2009
+<address>
+<a href="http://alpha.uhasselt.be/~vdbuss/">Jan Van den Bussche</a>
+</address>
+
+</body>
+</html>

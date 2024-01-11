@@ -1,0 +1,121 @@
+<html>
+<head>
+  <title>ProteinSQL</title>
+  
+</head>
+
+<body>
+<h2>ProteinSQL: An SQL/PSM library for manipulating protein structure data</h2>
+
+<h4>Kerstin Koch(1), Wouter Gelade(2), Dirk Leinders(2), and Jan Van den Bussche(2)</h4>
+<h5>(1) Universit&eacute; de Paris-Sud, (2) Hasselt University and Transnational University of Limburg</h5>
+
+<p>
+<font color="green">To run the demo, connect to spooky.uhasselt.be through secure shell (SSH) using username &quot;demopsql&quot; and password &quot;ProteinSQL&quot;</font>
+
+<p>
+The zip file <a href="ProteinSQL.zip">ProteinSQL.zip</a> contains the
+necessary files for installing the database library. Included is a
+README.txt file which for convenience is shown below.
+
+<p>
+Welcome to the Protein SQL system. This document describes the
+contents of this directory; how the Protein SQL system can be
+installed and removed; and what the requirements for the system are.
+
+
+<h4>CONTENTS</h4>
+
+
+This directory contains 2 subdirectories, "install" and
+"uninstall". The install directory is further divided into a "java"
+and "sql" subdirectory. The "sql" directory contains the statements to
+create the database (createDB.sql) and the functions and procedures
+(*.db2 files). The script createfunctions.sh creates the database and
+the functions and procedures. The "java" directory contains all Java
+code of the system. The script installJava.sh contains the Java
+compilation instructions and statements to install the jar files.
+
+
+
+<h4>REQUIREMENTS</h4>
+
+<ul>
+<li> A Unix based system
+<li> DB2 V 9
+<li> DB2 Java compiler
+</ul>
+
+The system has only been tested with the above requirements. However,
+it only uses java and functionalities of DB2. Therefore, it should
+also be possible to for instance install it on a windows
+system. However, no guarantees are given.
+
+<p>
+The application heap size of the database should have a value of at
+least 1024. To update the value of this parameter, use the command
+<br>
+update db config using applheapsz 1024
+
+
+<h4>INSTALLATION</h4>
+
+<h5>Step 1: adjusting the files</h5>
+
+Some of the files needed in the installation contain a number of
+"parameters" which depend on your system and your installation. These
+parameters are the following:
+
+<ul>
+<li>{{DATABASE-NAME}} : The name of the database. We use "protsql".
+<li>{{SCHEMA-NAME}} : The name of the schema. We use "PROTSQL". Use only uppercase letters here!
+<li>{{DATABASE-SERVER}} : The server on which the database is located. We use "localhost".
+<li>{{PORT}} : The port number on which the database server is installed. We use 50002.
+<li>{{USER-NAME}} : Your user name on the database system.
+<li>{{PASSWORD}} : Your password on the database system.
+<li>{{DB2-INSTALLATION-SQLLIB}} : The path to the sqllib folder in your db2 installation. In our case "/scratch/db2/db2iexp/sqllib"
+<li>{{JAVA-COMPILER}} : The path to the IBM java compiler. In our case "/opt/ibm/db2/V9.1/java/jdk32/bin"
+<li>{{WORKING-DIRECTORY}} : The full path to the PROTSQL directory that is the result of unpacking the zip file ProteinSQL.zip. In our case "/home/username/PROTSQL".
+</ul>
+
+These parameters occur in the files createDB.sql, installJava.sh,
+createfunctions.sh,
+and dbconnection2.java , and can be filled in by using the
+search-replace tool of your favourite text editor
+
+<h5>Step 2: installation</h5>
+
+Go to the install directory (specified by
+{{WORKING-DIRECTORY}}/install) and execute the installation script by
+the command: <br>
+. createProteinSQL.sh
+
+
+
+<h4>REMOVAL</h4>
+
+
+<h5>Step 1: adjusting the files</h5>
+
+The removal files contain the same parameters as the ones for
+the installation. These files are dropfunctions.sh, uninstallJava.sh,
+and dropDB.sql. Again, replace these parameters by your values by
+using search-replace.
+
+<h5>Step 2: removal</h5>
+Step 2: removal Go to the uninstall directory (specified by
+{{WORKING-DIRECTORY}}/uninstall) and execute the removal script by the
+command: <br>
+. removeProteinSQL.sh
+
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2288658-1";
+urchinTracker();
+</script>
+</body>
+
+
+</html>

@@ -1,0 +1,68 @@
+<title> Theoretische Informatica II </title>
+<img src="washetnu.jpg" align=right>
+<h1> Theoretische Informatica II </h1>
+Het e-mail adres van Jan Van den Bussche is: <address>
+jan.vandenbussche@luc.ac.be </address>
+<hr>
+<h2>Studiemateriaal</h2>
+We bestuderen het derde deel van het boek
+<em>Introduction to the Theory of Computation</em> van Michael Sipser.
+<p>
+<a href="3sat.pdf">NP-compleetheid van 3SAT</a>
+<p>
+<a href="nl.pdf">NL is een deel van P</a>
+<p>
+<a href="space.pdf">Savitch en Immerman-Szelepcsenyi</a>
+<p>
+<a href="hierarchy.pdf">De Hierarchie Stellingen</a>
+<h2>Opgelet</h2>
+Er was een typfoutje geslopen in het tekstje "Savitch en
+Immerman-Szelepcsenyi" hierboven (foutieve formulering van de stelling van 
+Savitch).  Dit is nu verbeterd.
+<h2>Oefeningen</h2>
+Oefening&nbsp;8.15 (opgegeven op 23&nbsp;mei) <strong>vervalt</strong> (is
+veel moeilijker dan ik dacht).
+<p>
+<a href="npoef.pdf">Aanvullende oefeningen</a>
+<p>
+<strong>Oplossingen:</strong>
+<a href="oef030523opl.pdf">23&nbsp;mei</a>
+|
+<a href="puzzle.pdf">PUZZLE</a>
+|
+<a href="cqc.pdf">CONTAINMENT</a>
+|
+<a href="oef030506opl.pdf">6&nbsp;mei</a>
+|
+<a href="oef030428opl.pdf">28&nbsp;april</a>
+|
+<a href="oef030417opl.pdf">17&nbsp;april</a>
+|
+<a href="oef030411opl.pdf">11&nbsp;april</a>
+<h2>Extra informatie</h2>
+Wanneer je in de latere praktijk een probleem tegenkomt waarvan je vermoedt
+dat het NP-compleet is, maar je kan het niet direct bewijzen, kan het boek
+van M.R.&nbsp;Garey en D.S.&nbsp;Johnson,
+<em>Computers and Intractability: A Guide to the Theory of
+NP-Completeness,</em> heel nuttig zijn.  Het bevat een lange lijst
+van bekende NP-complete
+problemen, waar je eigen probleem misschien gewoon tussen staat, of waarvan je
+er misschien gemakkelijk eentje kan vinden dat kan gereduceerd worden naar je
+eigen probleem.  Het boek bevat voor het overige ook een heel mooi overzicht
+van de basistheorie van NP-compleetheid (meer recente ontwikkelingen staan er
+niet in).  Het boek is aanwezig in de bibliotheek.
+<p>
+<a href="http://theory.cs.uchicago.edu/merlin/">Een leuk stripverhaal</a> over
+<strong>transparent interactive proofs</strong>, een recentere evolutie in de
+problematiek rond NP-compleetheid.  Een normale verifier moet je gewoon
+overtuigen van lidmaatschap door hem een certificaat (een "bewijs") voor te
+schotelen dat hij dan op z'n eentje controleert.  Je kan echter ook een
+scenario bedenken waar je werkelijk een discussie met de verifier moet
+opzetten om hem te overtuigen dat je lid bent.  Er is nu aangetoond dat voor
+elk probleem in NP zo'n communicatieprotocol bestaat, waarin de verifier het
+certificaat slechts in een constant aantal plaatsen hoeft te controleren!
+De verifier is dan wel probabilistisch, maar de kans dat hij de verkeerde
+beslissing neemt
+kan willekeurig klein gemaakt worden.
+<hr>
+Met dank aan Jan Moesen voor de graphic "Was het nu in P of NP?"

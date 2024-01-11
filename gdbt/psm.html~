@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>Procedures en functies in SQL</h1></div>
+
+<table align="center" width="60%">
+<tr>
+<td>
+
+<p>We geven enkele links naar de DB2 handleiding waarin de concrete syntax wordt beschreven om procedurele code te schrijven via een uitbreiding van SQL. De code die hierin wordt geschreven en die wordt geïnstalleerd in DB2 noemt men ook wel <q>persistent stored modules</q> (PSM). Het is mogelijk om zowel procedures als functions te schrijven.</p> 
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0020482.html" >
+sql routines main
+</a><br>
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/t0020502.html">designing sql procedures</a><br>
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.sql.ref.doc/doc/r0008329.html" >
+create procedure statement
+</a>
+<br>
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.sql.ref.doc/doc/r0003493.html" >
+create function statement 
+</a>
+</p>
+
+<p>Veronderstel een eenvoudig table schema genaamd <a href="files/person.db2" ><code>person</code></a> met twee kolommen: <code>id</code> (integer, primary key) en <code>name</code> (varchar(200)).</p>
+
+<p>Hier volgt een kleine tip omtrent het oproepen van procedures en functions. Het oproepen van functions is meestal intuïtiever dan het oproepen van procedures. Je kan de ingebouwde <em>function</em> <code>count</code> oproepen om het aantal tuples in de tabel te tellen als volgt:</p>
+
+<pre>db2 "select count(*) from person"</pre>
+
+<p>Een function-oproep expressie evalueert at runtime altijd tot een resultaat, een procedure niet.<br>
+Bekijk nu de voorbeeld-procedure genaamd <a href="files/getname.db2"><code>getname</code></a> die voor een bepaald persoon-nummer de naam van de persoon moet teruggeven. De eerste parameter is het nummer (input) en de tweede parameter de naam (output). Installeren doe je als volgt:</p>
+
+<pre>db2 -td@ -f getname.db2</pre>
+
+<p>Je kan die procedure nu oproepen met een <q>?</q> op de plaats van elke output parameter. Stel dat we de naam van de persoon met <code>id</code> 1 willen opvragen, dan doen we:</p>
+
+<pre>db2 "call getname(1, ?)"</pre>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>

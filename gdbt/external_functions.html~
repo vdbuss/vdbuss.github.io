@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>External functions</h1></div>
+
+<table align="center" width="60%" border="0"> 
+<tr bgcolor="#FFFF99">
+<td align="center">
+<h3>Toelichting</h3>
+<p align="left"><em>Aan de rechterkant van onderstaande uitleg nemen we links op naar de officiële DB2 handleiding.</em></p>
+</td>
+</tr>
+<!-- ******************** -->
+<tr align="left">
+<td>
+
+External functions zijn  plugins die in de database geïnstalleerd worden. Deze plugins kunnen
+veel nieuwe functionaliteiten aanleveren omdat zij toegang hebben tot resources buiten de database 
+ zoals bestanden en het internet.
+
+<p align="right">
+	<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0023739.html">(meer)</a></p>
+</td>
+</tr>
+
+<tr align="left">
+<td >
+Er zijn verschillende types external functions. Het onderscheid wordt gemaakt op basis van de vorm van het resultaat dat de
+functie teruggeeft. 
+Als er één waarde wordt teruggegeven spreken we van <b>scalar functions</b> en indien een tabel wordt teruggegeven spreken
+we van <b>table functions</b>.
+
+</td>
+</tr>
+
+<tr align="left">
+<td>
+Tussen de external functions die je installeert en de DB2 database heerst een soort client-server protocol. De database zal 
+de external function volgens een bepaalde volgorde berichten sturen. Dat noemt men het <q>processing model</q> van de external 
+function. Dit protocol verschilt afhankelijk van het type van de external function. Belangrijk is om te weten dat de database
+via het protocol voor table functions de resulterende tabel eigenlijk zelf opbouwt door elke rij apart aan de plugin op te vragen.  
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0009701.html">
+(intro scalar functions)
+</p>
+<p align="right">
+</a>
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0009295.html" >
+(protocol scalar functions)</a>
+</p>
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0009296.html">
+(intro table functions)
+</a>
+</p>
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0009298.html" >
+(protocol table functions)
+</a>
+</p>
+</td>
+</tr>
+
+
+<tr align="left">
+<td>
+
+Merk op dat zeker in de context van table functions de plugin moet onthouden welke rijen hij al heeft
+teruggeven. Dit zou normaal gezien in een standaard stand-alone programma kunnen gebeuren via lokale variabelen, maar 
+er wordt vanuit de database zijde nu niet meer verondersteld dat de external function een eigen geheugenruimte. 
+De database wil nu zelf controle over hoeveel geheugen een plugin gebruikt
+en voorziet daarom voor de plugin een <q>scratch pad</q> (kladblok). Deze scratch pad is een array van bytes waarin de plugin
+de waarden van variabelen kan schrijven. Bij elke volgende oproep van het protocol zal precies dezelfde scratch pad
+ worden doorgegeven aan de plugin die terug de waarden kan lezen van de vorige keer. Op deze manier blijven we wel de
+ kracht van lokale variabelen behouden.
+
+</td>
+</tr>
+
+</table>
+
+</body>
+</html>

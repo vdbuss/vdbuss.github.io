@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<div style="text-align: center"><h1>External functions</h1></div>
+
+<table align="center" width="60%" border="0"> 
+
+<!-- ******************** -->
+<tr align="left">
+<td>
+
+<h3>Inleiding</h3>
+
+<p>
+External functions zijn  plugins die in de database geïnstalleerd worden. Deze plugins kunnen
+veel nieuwe functionaliteiten aanleveren omdat zij toegang hebben tot resources buiten de database 
+ zoals bestanden en het internet. Daarom zijn deze plugins krachtiger dan gewone <a href="psm.html">SQL routines</a>.
+ De officiële term die in de DB2 handleiding voor een dergelijke plugin wordt gehanteerd is <q>User Defined Function</q> (UDF).
+ </p>
+
+<p align="right">
+	<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0023739.html">(meer)</a></p>
+
+Er zijn verschillende types external functions. Het onderscheid wordt gemaakt op basis van de vorm van het resultaat dat de
+functie teruggeeft. 
+Als er één waarde wordt teruggegeven spreken we van <b>scalar functions</b> en indien een tabel wordt teruggegeven spreken
+we van <b>table functions</b>.
+
+Tussen de external functions en de DB2 database heerst een soort client-server protocol. De database zal 
+de implemenatie-code van de external function oproepen in verschillende fasen. Elke fase wordt onderscheiden via een aparte <q>code</q> die via een API kan opgevraagd worden in de implementatie van de external function. De namen van de verschillende fasen en hun volgorden noemt men het <q>processing model</q> van de external function. Dit model verschilt afhankelijk van het type van de external function. Een voorbeeld is als volgt. De database zal in het geval van table functions de resulterende tabel opbouwen door elke rij apart aan de plugin op te vragen via meerdere FETCH fases, maar eerst moet de plugin weten wanneer de database met deze opvraging zal beginnen met een OPEN fase. De plugin kan ook te weten komen wanneer de database zal stoppen met volgende fasen te doen via een CLOSE fase. Ruw geschetst kan een oproep-verloop waarbij de resulterende tabel twee rijen heeft er dan uitzien als volgt: OPEN - FETCH - FETCH - CLOSE. Afhankelijk van hoe je de external function declareert krijg je soms ook een FIRST en FINAL call. Daar zullen we later dieper op ingaan.
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0009701.html">
+intro scalar functions</a>
+<br>
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0009295.html" >
+processing model scalar functions</a>
+<br>
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0009296.html">
+intro table functions</a>
+<br>
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0009298.html" >
+processing model table functions</a>
+<br>
+</p>
+
+<h3>Scratchpad</h3>
+
+<p>
+Merk op dat zeker in de context van table functions de plugin moet onthouden welke rijen hij al heeft
+teruggeven. Maar ook andere external functions moeten mogelijk een <q>state</q> bijhouden tussen de oproepen van het
+protocol door. Om hierbij te helpen kan de plugin een <q>scratchpad</q> (kladblok) vragen aan de database server. Deze scratchpad is een array van bytes waarin de plugin de waarden van variabelen kan schrijven. Bij elke volgende oproep van het protocol zal precies dezelfde scratchpad worden doorgegeven aan de plugin die terug de waarden kan lezen van de vorige keer. Het lezen en schrijven van bytes is technisch, maar zoals we bij de Java implementaties zullen zien bestaan daar in Java handige hulpklassen voor.<br> 
+Er zijn verder een aantal opties voor de ontwerper van een external function om een nieuwe scratchpad aan te vragen als de external function meermaals wordt opgeroepen.
+</p>
+
+<p align="right">
+<a href="http://publib.boulder.ibm.com/infocenter/db2luw/v9r5/topic/com.ibm.db2.luw.apdv.routines.doc/doc/c0009033.html" >
+intro scratchpad
+</a>
+</p>
+
+<h3>Java</h3>
+
+<p>
+We geven ook de algemene werkwijze en concrete voorbeelden voor het maken van external functions in Java op
+	<a href="extfun_java.html" >deze webpage</a>. We raden aan om deze eens te doorlopen.
+</p>
+
+</td>
+</tr>
+
+</table>
+
+</body>
+</html>

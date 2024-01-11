@@ -1,0 +1,96 @@
+<title> Theoretische Informatica II </title>
+<img src="washetnu.jpg" align=right>
+<h1> Theoretische Informatica II </h1>
+Het e-mail adres van Jan Van den Bussche is: <address>
+jan.vandenbussche@luc.ac.be </address>
+<hr>
+<h2>Studiemateriaal</h2>
+We bestuderen het derde deel van het boek
+<em>Introduction to the Theory of Computation</em> van Michael Sipser.
+<h2>Cursusverloop</h2>
+<strong>11 Juni:</strong> Gelegenheid tot vragen stellen.
+<p>
+<strong>4 Juni:</strong> <a href="hierarchy.pdf">Hierarchiestellingen</a>
+(Hoofdstuk&nbsp;9 tot aan
+Corollary&nbsp;9.13; bewijzen hoef je niet te kennen).
+<p>
+<strong>Oefeningen:</strong>
+<ul>
+<li> Toon aan dat log&nbsp;n space-constructible is.
+<li> Toon aan dat volgend probleem EXPTIME-compleet is. Input: 
+een TM M, een input
+string w, en een string bestaande uit t eentjes.  Beslis: of M de input w
+aanvaardt in 2<sup>t</sup> stappen. <a href="compleetheid.pdf">Oplossing</a>
+<li> Problem 9.10 uit het boek.
+</ul>
+<p>
+<strong>28 Mei:</strong> Vervolg space complexiteit.
+<p>
+<strong>14 Mei:</strong> <a href="space.pdf">Space complexiteit</a>
+<p>
+<strong>Oefeningen:</strong>
+<ul>
+<li>
+8.11, 8.12
+<li>
+8.20: Dit is een voorbeeld van een probleem waarvan het eenvoudiger is in te
+zien dat het in NL zit, en dus in P, dan rechtstreeks te trachten een
+algoritme te bedenken dat in polynomiale tijd werkt.
+<li>
+Toon aan dat volgend probleem PSPACE-compleet is.  Input: een TM M, een input
+string w, en een string bestaande uit s eentjes.  Beslis: of M de input w
+aanvaardt binnen s space.
+</ul>
+<strong>7 Mei:</strong>
+<ul>
+<li>
+<a href="puzzle.pdf">Oplossing PUZZLE</a>
+<li>
+<a href="npoef.pdf">Train verder op NP-compleetheid!</a>
+</ul>
+<p>
+<strong>30 April:</strong> Afwerking hoofdstuk&nbsp;7.4. <em>Opgelet: wij zien
+een <a href="3sat.pdf">ander bewijs voor de NP-compleetheid van 3SAT</a>.</em>
+<p>
+<font color="red"><strong>Opdracht:</strong></font>
+Bestudeer hoofdstuk&nbsp;7.5 zelfstandig.
+<p>
+<strong>23 April:</strong> Hoofdstuk&nbsp;7.4 tot en met Theorem&nbsp;7.26.
+<p>
+<strong>Oefeningen:</strong> <a href="oef040430opl.pdf">Oplossingen.</a>
+<ol>
+<li>
+Geef polynomiale reducties:
+<ul>
+<li>
+van TRIANGLE naar CLIQUE;
+<li>
+van SAT naar DOUBLE-SAT;
+<li>
+van CLIQUE naar HALF-CLIQUE.
+</ul>
+<li>
+Zij A een willekeurig probleem in P.  Zij B een willekeurig probleem dat
+niet leeg is en dat ook niet <em>alle</em> strings bevat.  Toon aan dat altijd
+A&nbsp;&le;<sup>P</sup>&nbsp;B.
+</ol>
+<p>
+<strong>21 April:</strong> Hoofdstuk 7.3.
+<p>
+<strong>Oefeningen:</strong> <a href="oef030417opl.pdf">Oplossingen.</a>
+<ul>
+<li>
+7.7, 7.14. 
+<li>
+Toon aan dat volgende problemen in NP zitten: LPATH (7.16), HALF-CLIQUE (7.21),
+MAX-CUT (7.23).
+<li>
+Toon aan dat SPATH (7.16) in P zit.
+</ul>
+<p>
+<strong>16 April:</strong> Hoofdstukken 7.1 en 7.2.
+<p>
+<strong>Oefeningen:</strong> 7.1, 7.6, 7.13. <a
+href="oef030411opl.pdf">Oplossingen.</a>
+<hr>
+Met dank aan Jan Moesen voor de graphic "Was het nu in P of NP?"
