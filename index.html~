@@ -6,14 +6,21 @@
 
 <hr>
 
+<a href="https://www.uhasselt.be/en/instituten-en/dsi"><img src="dsi_logo.png" width="200" style="float:right"/></a>
+
 Professor, <a href="http://www.uhasselt.be">Universiteit Hasselt</a>,
-<a href="http://www.uhasselt.be/theocomp/">databases &amp; theoretical
+<a href="http://alpha.uhasselt.be/research/groups/theocomp/">databases &amp; theoretical
 computer science group</a>
 
 <p>
 
-<strong>Address:</strong> Universiteit Hasselt, Agoralaan D,
-B-3590 Diepenbeek, Belgium
+<strong>Office Address:</strong> Universiteit Hasselt, Agoralaan building D,
+3590 Diepenbeek, Belgium
+
+<p>
+
+<strong>Mailing Address:</strong> Universiteit Hasselt, Martelarenlaan 42, 
+3500 Hasselt, Belgium
 
 <p>
 
@@ -30,48 +37,13 @@ jan.vandenbussche@uhasselt.be</a>
 <hr>
 
 You can see <a href="pubs.html">a list of my publications</a> 
-with many of them online.  My general area of research is that of database
-theory.
+with many of them online.  My general area of research is the theoretical foundations of data management (<a href="http://databasetheory.org">databasetheory.org</a>). An added focus is data management as a crucial service to AI, as well as making data management more intelligent in itself.
 
 <p>
 
 <a href="talks.html">Slides of some of my talks</a> may be online...
-
 <p>
-
-My doctoral advisor was <a
-  href="http://alpha.uhasselt.be/jan.vandenbussche/jp/">Jan
-  Paredaens</a>.
-My own doctoral students are
-Tom Ameloot;
-Jonny Daenen (Tom and Jonny co-advised with Frank Neven);
-Joris Gillis;
-Natalia Kwasnikowska (PhD obtained in June 2011);
-Dirk Leinders (April 2008);
-Eveline Hoekx (December 2007);
-Stijn Vansummeren (2005);
-Bart Goethals (2002);
-Floris Geerts (2001);
-Frank Neven (1999).
-<hr>
-From 2001 until March 2011 I served as chair of the
-<a href="http://icdt.tu-dortmund.de">ICDT</a>
-Council.  The current chair is Thomas Schwentick.
-
-<p><a
-  href="http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=20432&copyownerid=9119">4th
-  USENIX Workshop on the Theory and Practice of Provenance</a>
-
-<p>
-
-I am an editor of the journals <a
-href="http://www.elsevier.com/locate/issn/03064379"><em>Information
-Systems</em></a>, <a href="http://www.acm.org/tods"><em>ACM Transactions on
-Database Systems</em></a>, and <a href="http://fi.mimuw.edu.pl/"><em>Fundamenta Informaticae</em></a>.
-
-
-<p>
-<img height="10%" align="middle" src="ip_icon_04_New.png">Check out
+Check out
 <a href="pubs.html#dna">my papers on DNA computing</a>!
 Here is a <a href="gonick_dna.html">great cartoon on DNA computers</a>.
 There is a good <a href="shasha.txt">popular science
@@ -79,10 +51,48 @@ There is a good <a href="shasha.txt">popular science
 
 <p>
 
-<a href="conv.html">Conversations at scientific meetings...</a>
+My doctoral advisor was <a
+  href="http://alpha.uhasselt.be/jan.vandenbussche/jp/">Jan
+  Paredaens</a>.
+My own doctoral students are
+Jasper Steegmans;
+Maxime Jakubowski;
+Heba Aamer (PhD obtained February 2023);
+Jelle Hellings (co-advised with Marc Gyssens, PhD obtained April 2018);
+Dimitri Surinx (December 2017);
+Jonny Daenen (co-advised with Frank Neven, September 2016);
+Bart Bogaerts (co-advised with Marc Denecker and Joost Vennekens, June 2015);
+Tom Ameloot (June 2013);
+Joris Gillis (May 2013);
+Natalia Kwasnikowska (June 2011);
+Dirk Leinders (April 2008);
+Stefan Raeymaekers (co-advised with Maurice Bruynooghe, January 2008);
+Eveline Hoekx (December 2007);
+Stijn Vansummeren (2005);
+Raymondus Kosala (co-advised with Maurice Bruynooghe, June 2003);
+Bart Goethals (2002);
+Floris Geerts (2001);
+Frank Neven (1999).
+<hr>
+I chaired the Executive Committee of
+<a href="https://databasetheory.org/PODS">PODS</a> for the editions
+<a href="http://sigmod2017.org">2017</a> and
+<a href="http://sigmod2018.org">2018</a>.
+<p>
+From 2001 until March 2011 I served as chair of the
+<a href="https://databasetheory.org/icdt-pages">ICDT</a>
+Council.  The current chair is Dan Olteanu.
 
+<p align="right">
+<a href="https://tcs4f.org" 
+   style="display: inline-block;
+	background-color: white; border: 2px solid #CCCCCC;
+	padding: 5px; margin: 10px; border-radius: 5px;">
+	<img width="100" src="https://tcs4f.org/themes/tcs4f/img/logo_short.svg" 
+	     alt="Theoretical Computer Scientists for Future">
+</a>
 <hr>
 Last updated:
-Wed Jan 18 14:27:04 CET 2012
+Mon Feb 20 12:17:05 CET 2023
 </body>
 </html>
