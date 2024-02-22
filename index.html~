@@ -9,7 +9,7 @@
 <a href="https://www.uhasselt.be/en/instituten-en/dsi"><img src="dsi_logo.png" width="200" style="float:right"/></a>
 
 Professor, <a href="http://www.uhasselt.be">Universiteit Hasselt</a>,
-<a href="http://alpha.uhasselt.be/research/groups/theocomp/">databases &amp; theoretical
+<a href="https://www.uhasselt.be/en/research/research-groups/detail/86-databases-and-theoretical-computer-science">databases &amp; theoretical
 computer science group</a>
 
 <p>
@@ -35,6 +35,12 @@ computer science group</a>
 jan.vandenbussche@uhasselt.be</a>
 
 <hr>
+
+<strong style="color:red">OPEN PHD POSITION 4 years on verification of neural networks using
+methods of logic and geometry.  Please contact me for more
+information!</strong>
+
+<p>
 
 You can see <a href="pubs.html">a list of my publications</a> 
 with many of them online.  My general area of research is the theoretical foundations of data management (<a href="http://databasetheory.org">databasetheory.org</a>). An added focus is data management as a crucial service to AI, as well as making data management more intelligent in itself.
