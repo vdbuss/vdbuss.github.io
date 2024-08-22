@@ -4,16 +4,47 @@
 </head>
 
 <body>
-<H1>Slides of talks by <a href="index.html">
+<H1>Talks by <a href="index.html">
 Jan Van den Bussche</a></H1>
-
-<a href="ulb_code_seminar.pdf"><em>Temporal semantics for the Open
-    Provenance Model</em></a>, 26 May 2011, Universit&eacute;
-Libre de Bruxelles CoDE Seminar.
+<a href="shacl-dagstuhl.pdf">"An overview of SHACL"</a> at
+<a href="https://www.dagstuhl.de/24102">Dagstuhl Seminar on Shapes
+  in Graph Data: Theory and Implementation</a>, March 2024, co-organized by me.
+<a href="foikstalk.pdf">"First-order logic of information flows: Input-output properties, primitivity, and limited access patterns"</a>, keynote talk at FoIKS 2020, Dortmund, 17 February 2020.
+<p>
+<a href="talk_toulouse.pdf">"Fully generic queries: Open problems and some partial answers"</a>, keynote talk at MEDI conference, Toulouse, 29 October 2019.
+<p>
+<a href="bay.pdf">"Query languages for matrices and K-relations"</a>, given at
+Dagstuhl Seminar on Logics for Dependence and Independence, January 2019; also at Simon Fraser University September 2018; University of Bayreuth June 2019; NYU September 2019.
+<p>
+<a href="biskup.pdf">"JSON: History of a Data Model"</a>, given at Dortmund
+University, 20 July 2017, honoring Joachim Biskup's 70th birthday.
+<p>
+<a href="j-logic-podstalk.pdf">J-Logic: Logical Foundations of JSON Querying</a>, PODS 2017.
+<p>
+<a href="reldbdna.pdf">Relational Database Representation and Manipulation in
+DNA</a>, Konstanz Research School Chemical Biology,
+26 januari 2016.
+<p>
+<a href="telc.pdf">A logic-based approach to cloud computing</a>,
+lecture at the EATCS Young Researchers School, Telč, Czech Republic,
+1 August 2014.
+<p>
+<a href="lezing_turing.pdf">Alan Turing: het Enigma</a>, bloemlezing van de biografie van Alan Turing, seniorenuniversiteit UHasselt, 17 maart 2014.
+<p>
+<a href="genua.pptx"><em>DNAQL: A data model and query language for databases in DNA</em></a>, invited talk at EDBT/ICDT 2013, Genoa, Italy, 18 March 2013.
+<p>
+<a href="houffalize.pdf"><em>Declarative semantics for declarative networking</em></a>, 25 July 2012, KRDB Seminar at Free University of Bozen-Bolzano. Also given at meeting on Foundations of XML, Houffalize, Belgium, 23--25 April 2012.
+<p>
+<a href="houches.pdf"><em>Relative expressiveness within the calculus of relations</em></a>, 14 May 2012, Meeting on Finite Model Theory, Ecole de Physique des Houches.
+<p>
+<a href="dagstuhl_opm.pdf"><em>Temporal semantics for the Open
+    Provenance Model</em></a>, 28 February 2012, Dagstuhl Seminar
+on Principles of Provenance.
 <p>
 <a href="Namur.pdf"><em>Towards a theory of dataspace
-    queries</em></a> invited tutorial given at the BDA
-conference, held in Namur, 20-22 October 2009.
+    queries</em></a> invited tutorial given at the ER 2011
+conference, held in Bruxelles, 31 October 2011. Also invited
+tutorial at the BDA conference, held in Namur, 20-22 October 2009.
 
 <p>
 
@@ -124,9 +155,9 @@ given at the 2000 meeting on Finite Model Theory at
 <hr>
 
 Last updated:
-Fri Jul 15 17:47:35 CEST 2011
+Thu Aug 22 17:56:58 CEST 2024
 <address>
-<a href="http://alpha.uhasselt.be/~vdbuss/">Jan Van den Bussche</a>
+<a href="http://alpha.uhasselt.be/jan.vandenbussche">Jan Van den Bussche</a>
 </address>
 
 </body>
